@@ -3,7 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
-    
+    colors:{
+      '#2c3e50':'#2c3e50'
+    },
     borderRadius: {
       '20px': '20px',
       '30px': '30px',
