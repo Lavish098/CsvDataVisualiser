@@ -7,8 +7,8 @@
           <button @click="getContent">Visualise</button>
       </div>
   </div>
-  <div class="">
-          <Chart :contents="contents"/>
+  <div class="" :contents="contents">
+         
       </div>
     <svg></svg>
   </div>

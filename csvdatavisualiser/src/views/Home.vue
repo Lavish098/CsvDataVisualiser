@@ -1,7 +1,9 @@
 <template>
 <div class="home">
   <h1>CSV DATA VISUALISER</h1>
-  <router-link :to="{name: 'BarChart'}">bar chart</router-link>
+  <router-link :to="{name: 'BarChart'}">Bars chart</router-link>
+  <router-link :to="{name: 'ScatterChart'}">Scatter chart</router-link>
+  <router-link :to="{name: 'PieChart'}">Pie chart</router-link>
   <div>
       
   </div>
@@ -26,9 +28,7 @@ export default {
 </script>
 
 <style scoped>
-.home{
-    @apply flex
-}
+
 .header{
     @apply w-1/5 h-full bg-#2c3e50 right-0
 }
