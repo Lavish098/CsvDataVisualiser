@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello pt-20">
     <div class="header">
           
       <div class="datainput">
@@ -17,12 +17,15 @@
 <script>
 import * as d3 from "d3";
 export default {
+    components:{
+    },
 data(){
   return{
     parsed_csv: null,
       uploaded_csv_data: null,
       feedback: null,
       contents: [],
+      data:[],
     chart:null
   };
 },
@@ -51,8 +54,11 @@ methods:{
       console.log("STAGING CSV", csv_read_results);
       this.uploaded_csv_data = csv_read_results.data;
       console.log(csv_read_results);
-      this.contents = csv_read_results.data
-      console.log(this.contents)
+      this.data = csv_read_results.data
+      console.log(this.data)
+    },
+    getContent(){
+        this.contents = this.data
     },
   renderChart(contents_val){
   const svg_width = 400;

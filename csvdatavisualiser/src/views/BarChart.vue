@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello pt-20">
     <div class="header">
           
       <div class="datainput">
@@ -18,12 +18,15 @@
 import * as d3 from "d3";
 import _ from "lodash";
 export default {
+  components:{
+  },
 data(){
   return{
     parsed_csv: null,
       uploaded_csv_data: null,
       feedback: null,
       contents: [],
+      data:[],
     chart:null
   };
 },
@@ -52,8 +55,11 @@ methods:{
       console.log("STAGING CSV", csv_read_results);
       this.uploaded_csv_data = csv_read_results.data;
       console.log(csv_read_results);
-      this.contents = csv_read_results.data
-      console.log(this.contents)
+      this.data = csv_read_results.data
+      console.log(this.data)
+    },
+    getContent(){
+        this.contents = this.data
     },
   renderChart(contents_val){
       const margin = 60;
@@ -91,6 +97,10 @@ methods:{
     .attr("transform", `translate(0, ${chart_height})`)
     .call(d3.axisBottom(xScale));
 
+const color = d3.scaleOrdinal()
+.range(d3.schemeCategory10)
+.domain(contents_val.map((g) => {return g.name}));
+
     const barGroups = this.chart
     .selectAll("rect")
     .data(contents_val)
@@ -99,6 +109,7 @@ methods:{
   barGroups
     .append("rect")
     .attr("class", "bar")
+    .attr("fill", (g) => {return color(g.name)})
     .attr("x", (g) => {return xScale(g.name)})
     .attr("y", (g) => {return yScale(g.age)})
     .attr("height", (g) => {return chart_height - yScale(g.age)})

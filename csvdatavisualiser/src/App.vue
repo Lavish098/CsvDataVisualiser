@@ -1,15 +1,17 @@
 <template>
-<div id="app">
+<div id="app" class="bg-void text-stark">
+  <Navigation/>
   <router-view></router-view>
   </div>
 </template>
 
 <script>
-
+import Navigation from "./components/Navigation.vue"
 
 export default {
   name: 'App',
   components: {
+    Navigation
   }
 }
 </script>
@@ -20,5 +22,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
+  min-height: 100vh;
 }
 </style>

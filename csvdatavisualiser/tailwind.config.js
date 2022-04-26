@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {},
     colors:{
-      '#2c3e50':'#2c3e50'
+      'void':'#0E0B16',
+      'stark':'#e7dfdd'
     },
     borderRadius: {
       '20px': '20px',

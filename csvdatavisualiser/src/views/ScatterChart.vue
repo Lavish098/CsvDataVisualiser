@@ -1,5 +1,6 @@
 <template>
-  <div class="hello">
+  <div class="hello pt-20">
+    <Loading v-show="loading"/>
     <div class="header">
           
       <div class="datainput">
@@ -16,14 +17,20 @@
 
 <script>
 import * as d3 from "d3";
+import Loading from "../components/Loading.vue"
 export default {
+  components:{
+    Loading
+  },
 data(){
   return{
     parsed_csv: null,
       uploaded_csv_data: null,
       feedback: null,
       contents: [],
-    chart:null
+      data:[],
+    chart:null,
+    loading:null
   };
 },
 watch:{
@@ -51,11 +58,15 @@ methods:{
       console.log("STAGING CSV", csv_read_results);
       this.uploaded_csv_data = csv_read_results.data;
       console.log(csv_read_results);
-      this.contents = csv_read_results.data
-      console.log(this.contents)
+      this.data = csv_read_results.data
+      console.log(this.data)
+    },
+    getContent(){
+      this.loading = true;
+        this.contents = this.data;
+        this.loading = false
     },
   renderChart(contents_val){
-    
 const width = 600;
 const height = 500;
 const spacing = 120
