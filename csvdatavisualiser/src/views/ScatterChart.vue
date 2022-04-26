@@ -1,5 +1,5 @@
 <template>
-  <div class="hello pt-20">
+  <div class="hello pt-20 md:w-10/12 lg:w-3/4">
     <Loading v-show="loading"/>
     <div class="header">
           
@@ -11,7 +11,7 @@
   <div class="" :contents="contents">
           
       </div>
-    <svg></svg>
+    <svg ></svg>
   </div>
 </template>
 
@@ -76,8 +76,9 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 // append the svg object to the body of the page
   const svg = d3
     .select("svg")
-    .attr("width", width)
-    .attr("height", height);
+    // .attr("width", width)
+    // .attr("height", height)
+    .attr("viewBox", `0 0 ${width} ${height}`);
 
     this.chart = svg
     .append("g")

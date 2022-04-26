@@ -1,5 +1,5 @@
 <template>
-  <div class="hello pt-20">
+  <div class="hello pt-20 md:w-10/12 lg:w-3/4">
     <div class="header">
           
       <div class="datainput">
@@ -70,8 +70,9 @@ methods:{
  
   const svg = d3
     .select("svg")
-    .attr("width", svg_width)
-    .attr("height", svg_height);
+    // .attr("width", svg_width)
+    // .attr("height", svg_height);
+    .attr("viewBox", `0 0 ${svg_width} ${svg_height}`)
 
     this.chart = svg
     .append("g")
