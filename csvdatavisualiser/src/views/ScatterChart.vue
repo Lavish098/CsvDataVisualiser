@@ -1,10 +1,17 @@
 <template>
-  <div class="hello pt-20 md:w-10/12 lg:w-3/4">
+  <div class="hello pt-5 md:w-10/12 lg:w-3/4">
     <Loading v-show="loading"/>
     <div class="header">
           
       <div class="datainput">
           <input type="file" accept=".csv" @change="parse_csv"><br>
+          <div>
+            <p>Input the name of the header you want to use for your horizontal line</p>
+            <input type="text" v-model="left"></div>
+            <div>
+              <p>Input the name of the header you want to use for your vertical line</p>
+              <input type="text" v-model="bottom">
+            </div>
           <button @click="getContent">Visualise</button>
       </div>
   </div>
@@ -29,6 +36,8 @@ data(){
       feedback: null,
       contents: [],
       data:[],
+      left:'',
+      bottom:'',
     chart:null,
     loading:null
   };
@@ -47,6 +56,7 @@ methods:{
       var file = e.target.files[0];
       await this.$papa.parse(file, {
         header: true,
+        skipEmptyLines: true,
         complete: (results) => {
           raw_results = results;
           return this.stage_uploaded_csv(results);
@@ -56,15 +66,31 @@ methods:{
     },
     stage_uploaded_csv(csv_read_results) {
       console.log("STAGING CSV", csv_read_results);
-      this.uploaded_csv_data = csv_read_results.data;
+      this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
-      this.data = csv_read_results.data
+      this.data = csv_read_results
       console.log(this.data)
     },
     getContent(){
       this.loading = true;
-        this.contents = this.data;
-        this.loading = false
+        this.contents = this.data.data;
+        this.loading = false;
+
+        for(const i in this.data.meta.fields){
+        if(this.left === this.data.meta.fields[i]){
+          console.log(this.left)
+        }else{
+          // console.log("error")
+        }
+        }
+
+        for(const i in this.data.meta.fields){
+        if(this.bottom === this.data.meta.fields[i]){
+          console.log(this.bottom)
+        }else{
+          // console.log("error")
+        }
+        }
     },
   renderChart(contents_val){
 const width = 600;
@@ -86,11 +112,22 @@ var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
  
 //scales
 const xScale = d3.scaleLinear()
-    .domain([d3.min(contents_val, (g) => {return g.gold;})-1, 
-        d3.max(contents_val, (g) => {return g.gold;})+1])
+    .domain([d3.min(contents_val, (g) => {
+      if(this.bottom){
+        return g[this.bottom]
+      }})-1, 
+        d3.max(contents_val, (g) => {
+          if(this.bottom){
+        return g[this.bottom]
+      }
+        })+1])
     .range([0, width-spacing]);
   const yScale = d3.scaleLinear()
-    .domain([0, d3.max(contents_val, (g) => {return g.silver;})])
+    .domain([0, d3.max(contents_val, (g) => {
+      if(this.left){
+return g[this.left];
+      }
+    })])
     .range([height-spacing, 0]);
  
  // X-axis
@@ -116,8 +153,14 @@ const scatterGroups = this.chart
  
   scatterGroups
     .append("circle")
-    .attr("cx",  (g) => { return xScale(g.gold)} )
-    .attr("cy",  (g) => { return yScale(g.silver)} )
+    .attr("cx",  (g) => { 
+      if(this.bottom){
+        return xScale(g[this.bottom])
+      }} )
+    .attr("cy",  (g) => { 
+      if(this.left){
+return yScale(g[this.left]);
+      }} )
     .attr("r", 10)
     .attr('stroke','black')
     .attr('stroke-width',1)

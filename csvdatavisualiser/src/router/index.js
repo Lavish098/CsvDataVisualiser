@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import BarChart from '../views/BarChart.vue'
 import ScatterChart from '../views/ScatterChart.vue'
 import PieChart from '../views/PieChart.vue'
+import LineChart from '../views/LineChart.vue'
 
 
 const routes = [
@@ -28,6 +29,12 @@ const routes = [
     path: '/piechart',
     name: 'PieChart',
     component: PieChart,
+   
+  },
+  {
+    path: '/linechart',
+    name: 'LineChart',
+    component: LineChart,
    
   },
  

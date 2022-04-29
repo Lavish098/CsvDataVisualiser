@@ -1,5 +1,5 @@
 <template>
-<div class="home pt-20">
+<div class="home pt-5">
  <div class="flex flex-wrap mt-5">
        <router-link class="chart" :to="{name: 'BarChart'}">
          <img src="../assets/barchart.png" alt="">
@@ -10,6 +10,10 @@
   <router-link class="chart" :to="{name: 'PieChart'}">
              <img src="../assets/piechart.jpg" alt="">
     <h1>Pie chart</h1></router-link>
+  
+  <router-link class="chart" :to="{name: 'LineChart'}">
+             <img src="" alt="">
+    <h1>Line chart</h1></router-link>
   
   </div>
   </div>
@@ -57,7 +61,7 @@ h1{
   padding: 10px 0;
 }
 .header{
-    @apply w-1/5 h-full right-0
+    @apply w-1/5 h-full right-0;
 }
 .datainput{
     @apply py-52

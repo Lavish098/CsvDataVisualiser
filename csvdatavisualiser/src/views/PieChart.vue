@@ -1,9 +1,16 @@
 <template>
-  <div class="hello pt-20 md:w-10/12 lg:w-3/4">
+  <div class="hello pt-5 md:w-10/12 lg:w-3/4">
     <div class="header">
           
       <div class="datainput">
           <input type="file" accept=".csv" @change="parse_csv"><br>
+         <div>
+            <p>Input the name of the header you want to use for your horizontal line</p>
+            <input type="text" v-model="sector"></div>
+            <div>
+              <p>Input the name of the header you want to use for your vertical line</p>
+              <input type="text" v-model="name">
+            </div>
           <button @click="getContent">Visualise</button>
       </div>
   </div>
@@ -26,6 +33,8 @@ data(){
       feedback: null,
       contents: [],
       data:[],
+      sector:'',
+      name:'',
     chart:null
   };
 },
@@ -43,6 +52,7 @@ methods:{
       var file = e.target.files[0];
       await this.$papa.parse(file, {
         header: true,
+        skipEmptyLines:true,
         complete: (results) => {
           raw_results = results;
           return this.stage_uploaded_csv(results);
@@ -52,13 +62,29 @@ methods:{
     },
     stage_uploaded_csv(csv_read_results) {
       console.log("STAGING CSV", csv_read_results);
-      this.uploaded_csv_data = csv_read_results.data;
+      this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
-      this.data = csv_read_results.data
+      this.data = csv_read_results
       console.log(this.data)
     },
     getContent(){
-        this.contents = this.data
+        this.contents = this.data.data
+
+        for(const i in this.data.meta.fields){
+        if(this.sector === this.data.meta.fields[i]){
+          console.log(this.sector)
+        }else{
+          // console.log("error")
+        }
+        }
+
+        for(const i in this.data.meta.fields){
+        if(this.name === this.data.meta.fields[i]){
+          console.log(this.name)
+        }else{
+          // console.log("error")
+        }
+        }
     },
   renderChart(contents_val){
   const svg_width = 400;
@@ -78,7 +104,9 @@ methods:{
     .attr("transform", "translate(" + svg_width / 2 + "," + svg_height / 2 +")");
  
   const pie = d3.pie().value((g) => {
-      return g.percent;
+      if(this.sector){
+        return g[this.sector]
+      }
   })
   const path = d3.arc().outerRadius(svg_radius - 10).innerRadius(0);
 
@@ -105,7 +133,9 @@ PieGroups
                return "translate(" + label.centroid(g) + ")"; 
             })
     .text((g) => {
-        return g.data.states;
+        if(this.name){
+        return g.data[this.name]
+      }
     })
     
     .style("text-anchor", "middle")

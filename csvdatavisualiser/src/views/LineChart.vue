@@ -24,7 +24,6 @@
 
 <script>
 import * as d3 from "d3";
-import _ from "lodash";
 export default {
   components:{
   },
@@ -88,25 +87,30 @@ methods:{
   }
     },
   renderChart(contents_val){
-      const margin = 60;
-  const svg_width = 1000;
-  const svg_height = 600;
-  const chart_width = 1000 - 2 * margin;
-  const chart_height = 600 - 2 * margin;
+//       const margin = 60;
+//   const width = 1000;
+//   const height = 600;
  
+ const margin = { top: 40, right: 80, bottom: 60, left: 50 },
+    width = 960 - margin.left - margin.right,
+    height = 580 - margin.top - margin.bottom;
+
+
   const svg = d3
     .select("svg")
-    // .attr("width", svg_width)
-    // .attr("height", svg_height);
-    .attr("viewBox", `0 0 ${svg_width} ${svg_height}`)
+    // .attr("width", width + margin.left + margin.right)
+    // .attr("height", height + margin.top + margin.bottom);
+    .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${
+    height + margin.top + margin.bottom}`)
 
     this.chart = svg
     .append("g")
-    .attr("transform", `translate(${margin}, ${margin})`);
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
  
+
   const yScale = d3
     .scaleLinear()
-    .range([chart_height, 0])
+    .range([height, 0])
     .domain([0, d3.max(contents_val, (g) => {
       if(this.left){
 return g[this.left];
@@ -115,91 +119,67 @@ return g[this.left];
  
   this.chart
     .append("g")
-    .call(d3.axisLeft(yScale).ticks(_.maxBy(contents_val, "contents")));
+    .call(d3.axisLeft(yScale));
  
   const xScale = d3
-    .scaleBand()
-    .range([0, chart_width])
-    .domain(contents_val.map((g) => {
+    .scaleTime()
+    .range([0, width])
+    .domain(d3.extent(contents_val, ((g) => {
       if(this.bottom){
         return g[this.bottom]
       }
-      }))
-    .padding(0.2);
- 
+      })));
+
   this.chart
     .append("g")
-    .attr("transform", `translate(0, ${chart_height})`)
+    .attr("transform", "translate(0, " + height + ")")
     .call(d3.axisBottom(xScale));
 
-const color = d3.scaleOrdinal()
-.range(d3.schemeCategory10)
-.domain(contents_val.map((g) => {
-  if(this.bottom){
-        return g[this.bottom]
-      }
-}));
-
-    const barGroups = this.chart
-    .selectAll("rect")
-    .data(contents_val)
-    .enter();
- 
-  barGroups
-    .append("rect")
-    .attr("class", "bar")
-    .attr("fill", (g) => {
-      if(this.bottom){
-        return color(g[this.bottom])
-      }})
-    .attr("x", (g) => {
-      if(this.bottom){
+//define the line
+var line = d3.line()
+.x((g) => {
+    if(this.bottom){
+        console.log(xScale(g[this.bottom]))
         return xScale(g[this.bottom])
-      }})
-    .attr("y", (g) => {
-      if(this.left){
+      }
+})
+.y((g) => {
+    if(this.left){
+        console.log(yScale(g[this.left]))
 return yScale(g[this.left]);
       }
-    })
-    .attr("height", (g) => {
-      if(this.left){
-return chart_height - yScale(g[this.left]);
-      }
-     })
-    .attr("width", xScale.bandwidth());
+})
+.curve(d3.curveCardinal)
+//scatter dot
+this.chart.append('g')
+        .selectAll("dot")
+        .data(contents_val)
+        .enter()
+        .append("circle")
+        .attr("cx", (g) => {
+    if(this.bottom){
+        return xScale(g[this.bottom])
+      }})
+        .attr("cy", (g) => {
+    if(this.left){
+        return yScale(g[this.left])
+      }})
+        .attr("r", 2)
+        .attr("transform", "translate(" + 100 + "," + 100 + ")")
+        .style("fill", "#CC0000");
 
-    svg
-  .append('text')
-  .attr('class', 'label')
-  .attr('x', -(chart_height / 2) - margin)
-  .attr('y', margin / 2.4)
-  .attr('transform', 'rotate(-90)')
-  .attr('text-anchor', 'middle')
-  .text('age')
- 
-svg
-  .append('text')
-  .attr('class', 'label')
-  .attr('x', chart_width / 2 + margin)
-  .attr('y', chart_height + margin * 1.7)
-  .attr('text-anchor', 'middle')
-  .text('name')
- 
-svg
-  .append('text')
-  .attr('class', 'title')
-  .attr('x', chart_width / 2 + margin)
-  .attr('y', 40)
-  .attr('text-anchor', 'middle')
-  .text('Issues in the past 1 week')
-  console.log(this.contents)
+    this.chart
+    .append("path")
+    .datum(contents_val)
+    .attr("g", line)
+    .style("fill", "none")
+    .style("stroke", "#CC0000")
+    .style("stroke-width", "2");
   }
 }
 }
 </script>
 
 <style scoped>
-.bar{
-  fill: #319bbe;
-}
+
 </style>

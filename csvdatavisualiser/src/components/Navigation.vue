@@ -1,6 +1,6 @@
 <template>
-  <header>
-      <nav class="container">
+  <div>
+      <nav class="nav">
           <div class="branding">
               <router-link class="header" :to="{name: 'Home'}">
                   <h2 id="sav" class="text-stark">C.D.V</h2> 
@@ -23,7 +23,7 @@
                       
                   </ul>
       </transition> -->
-  </header>
+  </div>
 </template>
 
 <script>
@@ -65,13 +65,12 @@ data(){
 </script>
 
 <style scoped>
-.container {
-  margin: 0 auto;
-}
-header{
+.nav {
+     background: #1eb8b8;
+    top: 0;
     width: 100%;
-    box-shadow: 0 4px 6px -1px rgba(255, 247, 247, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.86);
-    z-index: 99;
+    padding: 15px 0;
+    overflow: hidden;
 }
 .link{
     font-weight: bold;
@@ -83,18 +82,9 @@ header{
 .link:hover{
     color: #1eb8b8;
 }
-nav{
-    background: #1eb8b8;
-    position: fixed;
-    display: flex;
-    padding: 15px 0;
-    z-index: 99;
-    margin-left: 20px;
-}
 nav .branding{
     display: flex;
     align-items: center;
-    width:100%;
 }
 .header{
     display: flex;
@@ -106,22 +96,18 @@ nav .branding{
 .sav{
     width: 50px;
 }
-@media screen and (min-width: 500px) {
-    .sav{
-        margin-left: 0;
-    }
-}
+
 #sav{
     font-size: 30px;
     margin-top: 5px;
+    margin-left: 20px;
 }
 .branding .nav-links{
-    position: relative;
     display: flex;
     flex: 1;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 10px;
+    margin-right: 50px;
     
 }
 
