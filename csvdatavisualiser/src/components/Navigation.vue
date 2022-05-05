@@ -1,18 +1,28 @@
 <template>
   <div>
-      <nav class="nav">
-          <div class="branding">
-              <router-link class="header" :to="{name: 'Home'}">
+       <!-- Navbar -->
+    <nav class="relative container mx-auto p-6">
+      <!-- Flex container -->
+      <div class="flex items-center mt-4 justify-between">
+        <!-- Logo -->
+        <div class="pt-2">
+          <router-link class="header" :to="{name: 'Home'}">
                   <h2 id="sav" class="text-stark">C.D.V</h2> 
-                  </router-link>
-              <div class="nav-links">
-                  <ul>
-                      <router-link class="link" :to="{name: 'Home'}">HOME</router-link>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-      <!-- <div @click="toggleMobileNav" v-show="mobile" class="menu-icon" :class="{'btn-home':mobileNav}" >
+                  </router-link>  
+        </div>
+        <!-- Menu Items -->
+        <div class="hidden space-x-6 md:flex" v-show="!mobile">
+                <router-link class="link" :to="{name: 'Home'}">HOME</router-link>
+                <router-link class="link" :to="{name: 'Charts'}">CHARTS</router-link>
+           
+         </div>
+        <!-- Button -->
+        <!-- <router-link
+          class="hidden p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block"
+          >Get Started</router-link
+        > -->
+
+      <div @click="toggleMobileNav" v-show="mobile" class="menu-icon" :class="{'btn-home':mobileNav}" >
         <div class="bar" ></div>
         <div class="bar"></div>
         <div class="bar"></div>
@@ -20,9 +30,12 @@
       <transition name="mobile-nav" >
           <ul class="mobile-nav"  v-show="mobileNav">
                       <router-link @click="toggleMobileNav" class="link" :to="{name: 'Home'}">Home</router-link>
+                      <router-link @click="toggleMobileNav" class="link" :to="{name: 'Charts'}">Charts</router-link>
                       
                   </ul>
-      </transition> -->
+      </transition>
+          </div>
+      </nav>
   </div>
 </template>
 
@@ -35,62 +48,61 @@ components:{
 },
 data(){
     return{
-        // mobile: null,
-        // mobileNav: null,
-        // windowWidth: null,
-        // profileMenu:null,
+        mobile: null,
+        mobileNav: null,
+        windowWidth: null,
     };
 },
-// created(){
-//     window.addEventListener('resize', this.checkScreen);
-//     this.checkScreen();
-// },
-// methods:{
-//     checkScreen(){
-//         this.windowWidth = window.innerWidth;
-//         if(this.windowWidth <= 750){
-//             this.mobile = true;
-//             return;
-//         }
-//         this.mobile = false;
-//         this.mobileNav = false;
-//         return;
-//     },
-//     toggleMobileNav(){
-//         this.mobileNav = !this.mobileNav;
-//     },
-// },
+created(){
+    window.addEventListener('resize', this.checkScreen);
+    this.checkScreen();
+},
+methods:{
+    checkScreen(){
+        this.windowWidth = window.innerWidth;
+        if(this.windowWidth <= 750){
+            this.mobile = true;
+            return;
+        }
+        this.mobile = false;
+        this.mobileNav = false;
+        return;
+    },
+    toggleMobileNav(){
+        this.mobileNav = !this.mobileNav;
+    },
+},
 
 }
 </script>
 
 <style scoped>
-.nav {
-     background: #1eb8b8;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
+
+/* nav {
+    background: rgb(0, 0, 0);
+    display: flex;
+    padding: 25px 0;
+    position: absolute;
     overflow: hidden;
+    z-index: 99;
+    box-shadow: 0 0 10px 0 rgb(158, 158, 158);
+    @apply w-full lg:w-9/12 lg:rounded-20px lg:top-8 lg:left-28 
 }
 .link{
     font-weight: bold;
     font-size: 30px;
     transition: .3s color ease;
     text-decoration: none;
+    margin-left: 20px;
 }
 
-.link:hover{
-    color: #1eb8b8;
-}
 nav .branding{
     display: flex;
-    align-items: center;
+    
 }
 .header{
-    display: flex;
-    font-weight: 600;
-    font-size: 24px;
-    color: #000;
+    margin-left: 20px;
+    font-weight: bold;
     text-decoration: none;
 }
 .sav{
@@ -98,41 +110,45 @@ nav .branding{
 }
 
 #sav{
-    font-size: 30px;
+    font-size: 35px;
     margin-top: 5px;
     margin-left: 20px;
 }
-.branding .nav-links{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right: 50px;
+.nav-link{
+    position: absolute;
+    top: 32px;
+    right: 25px;
+    height: 25px;
+    width: auto;
     
-}
+}*/
 
-/* .mobile-nav{
+.mobile-nav{
+    z-index: 99;
     padding: 20px;
     width: 70%;
-    max-width: 250px;
+    text-transform: uppercase;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 100%;
-    background-color: #303030;
-    top: 0;
-    left: 0;
+    height: 20%;
+    background-color: #080808;
+    top: 80px;
+    right: 0;
 }
 .mobile-nav .link{
     padding: 15px 0;
     color: #fff;
 }
-.mobile-nav-enter-active,
-.mobile-nav-leave-active{
+.mobile-nav-enter-active{
     transition: all 1s ease;
 }
+.mobile-nav-leave-active{
+    transition: all 1s ease;
+} 
 .mobile-nav-enter{
-    transform: translateX(-250px);
+    transform: translateX(350px);
 }
 .mobile-nav-leave{
     transform: translateX(0);
@@ -141,7 +157,7 @@ nav .branding{
     transform: translateX(0);
 }
 .mobile-nav-leave-to{
-    transform: translateX(-250px);
+    transform: translateX(350px);
 }
 .btn-home .bar:nth-child(2) {
     opacity: 0;
@@ -157,14 +173,22 @@ nav .branding{
     transform: translateY(-13px) rotate(-45deg);
   }
   .btn-home .bar{
-    background: black;
-    ;
+    background: whitesmoke;
   }
+  .menu-icon{
+    cursor: pointer;
+    position: absolute;
+    top: 32px;
+    right: 25px;
+    height: 25px;
+    width: auto;
+}
   .bar{
       width: 28px;
       height: 4px;
       margin-bottom: 8px;
-      background: black;
+      color: white;
+      background: whitesmoke;
     transition: all ease-in-out 0.5s;
-  } */
+  } 
 </style>

@@ -1,18 +1,23 @@
 <template>
-  <div class="hello pt-5 md:w-10/12 lg:w-3/4">
+  <div class="hello pt-5 md:w-10/12 lg:w-3/4
+  container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
     <Loading v-show="loading"/>
     <div class="header">
           
       <div class="datainput">
-          <input type="file" accept=".csv" @change="parse_csv"><br>
-          <div>
-            <p>Input the name of the header you want to use for your horizontal line</p>
-            <input type="text" v-model="left"></div>
-            <div>
-              <p>Input the name of the header you want to use for your vertical line</p>
-              <input type="text" v-model="bottom">
+         <div class="upload-file">
+          <label for="csv-file">Upload CSV File</label>
+          <input type="file" id="csv-file" accept=".csv" @change="parse_csv"><br>
+          <span>{{ this.fileName }}</span>
+          </div> 
+          <div class="data-info">
+            <!-- <p>Input the name of the header you want to use for your horizontal line</p> -->
+            <input type="text" v-model="left" placeholder="left">
+            
+              <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
+              <input type="text" v-model="bottom" placeholder="bottom">
+              <button @click="getContent">Visualise</button>
             </div>
-          <button @click="getContent">Visualise</button>
       </div>
   </div>
   <div class="" :contents="contents">
@@ -39,7 +44,8 @@ data(){
       left:'',
       bottom:'',
     chart:null,
-    loading:null
+    loading:null,
+    fileName:''
   };
 },
 watch:{
@@ -54,6 +60,10 @@ methods:{
       let files = e.target.files || e.datatransfer.files;
       if (!files.length) return (this.feedback = "Invalid File");
       var file = e.target.files[0];
+      if(file){
+        this.fileName = file.name
+      console.log(this.fileName)
+      }
       await this.$papa.parse(file, {
         header: true,
         skipEmptyLines: true,
@@ -161,6 +171,8 @@ const scatterGroups = this.chart
       if(this.left){
 return yScale(g[this.left]);
       }} )
+      .transition()
+    .duration(4000)
     .attr("r", 10)
     .attr('stroke','black')
     .attr('stroke-width',1)

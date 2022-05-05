@@ -4,6 +4,8 @@ import BarChart from '../views/BarChart.vue'
 import ScatterChart from '../views/ScatterChart.vue'
 import PieChart from '../views/PieChart.vue'
 import LineChart from '../views/LineChart.vue'
+import DonutChart from '../views/DonutChart.vue'
+import Charts from '../views/Charts.vue'
 
 
 const routes = [
@@ -35,6 +37,19 @@ const routes = [
     path: '/linechart',
     name: 'LineChart',
     component: LineChart,
+   
+  },
+  {
+    path: '/donutchart',
+    name: 'DonutChart',
+    component: DonutChart,
+   
+  },
+ 
+  {
+    path: '/charts',
+    name: 'Charts',
+    component: Charts,
    
   },
  

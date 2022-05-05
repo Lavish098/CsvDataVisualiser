@@ -1,0 +1,111 @@
+[debug] [2022-05-03T13:37:40.874Z] ----------------------------------------------------------------------
+[debug] [2022-05-03T13:37:40.878Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lavish\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2022-05-03T13:37:40.879Z] CLI Version:   9.21.0
+[debug] [2022-05-03T13:37:40.880Z] Platform:      win32
+[debug] [2022-05-03T13:37:40.880Z] Node Version:  v16.5.0
+[debug] [2022-05-03T13:37:40.929Z] Time:          Tue May 03 2022 14:37:40 GMT+0100 (West Africa Standard Time)
+[debug] [2022-05-03T13:37:40.929Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-03T13:37:40.981Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-05-03T13:37:41.222Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-05-03T13:37:41.222Z] > authorizing via signed-in user (emmanzy12@gmail.com)
+[debug] [2022-05-03T13:37:41.223Z] [iam] checking project csvdatavisualiser for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-05-03T13:37:41.226Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-05-03T13:37:41.227Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:37:43.110Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Tue, 03 May 2022 13:37:43 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:37:43.315Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/csvdatavisualiser:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-05-03T13:37:49.652Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 May 2022 13:37:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1127","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:37:49.654Z] > refreshing access token with scopes: []
+[debug] [2022-05-03T13:37:49.654Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:37:50.617Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-05-03T13:37:50.617Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-05-03T13:37:55.101Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Tue, 03 May 2022 13:37:50 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:37:55.189Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser [none]
+[debug] [2022-05-03T13:37:56.306Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser 200
+[debug] [2022-05-03T13:37:56.307Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser {"projectId":"csvdatavisualiser","projectNumber":"1090710358770","displayName":"CsvDataVisualiser","name":"projects/csvdatavisualiser","resources":{"hostingSite":"csvdatavisualiser"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'csvdatavisualiser'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-05-03T13:37:56.318Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-05-03T13:37:56.318Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:37:56.794Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 03 May 2022 13:37:56 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:37:56.959Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-05-03T13:38:38.612Z] Error: read ECONNRESET
+    at TLSWrap.onStreamRead (node:internal/stream_base_commons:211:20)
+[error] 
+[error] Error: Server Error. read ECONNRESET
+[debug] [2022-05-03T13:38:54.127Z] ----------------------------------------------------------------------
+[debug] [2022-05-03T13:38:54.132Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lavish\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2022-05-03T13:38:54.132Z] CLI Version:   9.21.0
+[debug] [2022-05-03T13:38:54.133Z] Platform:      win32
+[debug] [2022-05-03T13:38:54.133Z] Node Version:  v16.5.0
+[debug] [2022-05-03T13:38:54.135Z] Time:          Tue May 03 2022 14:38:54 GMT+0100 (West Africa Standard Time)
+[debug] [2022-05-03T13:38:54.135Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-03T13:38:54.258Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-05-03T13:38:54.259Z] > authorizing via signed-in user (emmanzy12@gmail.com)
+[debug] [2022-05-03T13:38:54.259Z] [iam] checking project csvdatavisualiser for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-05-03T13:38:54.264Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/csvdatavisualiser:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-05-03T13:38:55.941Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 May 2022 13:38:55 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1112","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:38:55.946Z] > refreshing access token with scopes: []
+[debug] [2022-05-03T13:38:55.946Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:38:56.442Z] <<< HTTP RESPONSE 200 {"date":"Tue, 03 May 2022 13:38:56 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:38:56.545Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser [none]
+[debug] [2022-05-03T13:38:57.527Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser 200
+[debug] [2022-05-03T13:38:57.527Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/csvdatavisualiser {"projectId":"csvdatavisualiser","projectNumber":"1090710358770","displayName":"CsvDataVisualiser","name":"projects/csvdatavisualiser","resources":{"hostingSite":"csvdatavisualiser"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'csvdatavisualiser'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2022-05-03T13:38:57.537Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-05-03T13:38:57.537Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:38:58.132Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 03 May 2022 13:38:58 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:38:58.221Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-05-03T13:39:00.789Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 03 May 2022 13:39:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[csvdatavisualiser]: beginning deploy... 
+[info] i  hosting[csvdatavisualiser]: found 10 files in dist 
+[debug] [2022-05-03T13:39:01.238Z] > refreshing access token with scopes: []
+[debug] [2022-05-03T13:39:01.238Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-05-03T13:39:01.246Z] [hosting] hash cache [ZGlzdA] stored for 10 files
+[debug] [2022-05-03T13:39:01.246Z] [hosting][hash queue][FINAL] {"max":372,"min":31,"avg":114.3,"active":0,"complete":10,"success":10,"errored":0,"retried":0,"total":10,"elapsed":389}
+[debug] [2022-05-03T13:39:02.958Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 03 May 2022 13:39:01 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-05-03T13:39:03.061Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e:populateFiles [none]
+[debug] [2022-05-03T13:39:03.061Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e:populateFiles {"files":{"/favicon.ico":"d5451f0f0f0bcbcd433bbdf4f6e7e5d89d8ecce2650649e969ccb5e5cd499ab2","/index.html":"5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340","/js/app.7da34790.js":"a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db","/img/piechart.3019f485.jpg":"89a98648a1fb45968280f45d10cbdac3cadf0457ed6e4d5e443a5bef9288de05","/js/app.7da34790.js.map":"420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722","/img/scatterplot.1886a087.png":"bbd64db4ebf70346bf475da7f0505febca239cd38d8f3b3c51d9dfe552c401e3","/js/chunk-vendors.f9630bf5.js":"08b5998ccc0bd33174b409d1962a960d5eba817e2665e0a89b37fb3095843af2","/img/3959346.6e010845.png":"ee06da34ee8380eea0f10f2a3e2c7ce93d41c6257fdcbde74c5909b2b93c2130","/css/app.3d96c48c.css":"dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759","/js/chunk-vendors.f9630bf5.js.map":"d8c5c3f4972aed9b468849571990a39f5dc717d0681ca49e8032d80b6ea48354"}}
+[debug] [2022-05-03T13:39:06.369Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e:populateFiles 200
+[debug] [2022-05-03T13:39:06.369Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e:populateFiles {"uploadRequiredHashes":["ee06da34ee8380eea0f10f2a3e2c7ce93d41c6257fdcbde74c5909b2b93c2130","5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340","08b5998ccc0bd33174b409d1962a960d5eba817e2665e0a89b37fb3095843af2","d8c5c3f4972aed9b468849571990a39f5dc717d0681ca49e8032d80b6ea48354","a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db","dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759","420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files"}
+[debug] [2022-05-03T13:39:06.372Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/ee06da34ee8380eea0f10f2a3e2c7ce93d41c6257fdcbde74c5909b2b93c2130 [none]
+[debug] [2022-05-03T13:39:06.373Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/ee06da34ee8380eea0f10f2a3e2c7ce93d41c6257fdcbde74c5909b2b93c2130 [stream]
+[debug] [2022-05-03T13:39:06.376Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340 [none]
+[debug] [2022-05-03T13:39:06.376Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340 [stream]
+[debug] [2022-05-03T13:39:06.379Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/08b5998ccc0bd33174b409d1962a960d5eba817e2665e0a89b37fb3095843af2 [none]
+[debug] [2022-05-03T13:39:06.379Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/08b5998ccc0bd33174b409d1962a960d5eba817e2665e0a89b37fb3095843af2 [stream]
+[debug] [2022-05-03T13:39:06.382Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/d8c5c3f4972aed9b468849571990a39f5dc717d0681ca49e8032d80b6ea48354 [none]
+[debug] [2022-05-03T13:39:06.382Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/d8c5c3f4972aed9b468849571990a39f5dc717d0681ca49e8032d80b6ea48354 [stream]
+[debug] [2022-05-03T13:39:06.386Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db [none]
+[debug] [2022-05-03T13:39:06.386Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db [stream]
+[debug] [2022-05-03T13:39:06.389Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759 [none]
+[debug] [2022-05-03T13:39:06.389Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759 [stream]
+[debug] [2022-05-03T13:39:06.392Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722 [none]
+[debug] [2022-05-03T13:39:06.392Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722 [stream]
+[debug] [2022-05-03T13:39:06.394Z] [hosting][populate queue][FINAL] {"max":5135,"min":5135,"avg":5135,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":5158}
+[debug] [2022-05-03T13:39:06.395Z] [hosting] uploads queued: 7
+[debug] [2022-05-03T13:39:10.441Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340 200
+[debug] [2022-05-03T13:39:10.441Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/5318b55ef98a7862a1011ae71ffb5fd8c055d5d7eea2fa0a1e8b74bc7b09b340 [stream]
+[debug] [2022-05-03T13:39:11.647Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722 200
+[debug] [2022-05-03T13:39:11.648Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/420c322fb1875e151b37841bd54f7513a7a0f7c5e00eb35191fa0b6af8cf2722 [stream]
+[debug] [2022-05-03T13:39:11.650Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db 200
+[debug] [2022-05-03T13:39:11.651Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/a52a301afc7b1b0c345e82cd6707e10602df437922189c5f33a97cfcd8ae14db [stream]
+[debug] [2022-05-03T13:39:17.320Z] [uploadQueue] Retrying task dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759
+[debug] [2022-05-03T13:39:17.321Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759 [none]
+[debug] [2022-05-03T13:39:17.321Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/csvdatavisualiser/versions/2de56b60e5ee3b3e/files/dfa5dc439081261df23f27bf223e8542087ef690387baf31d4bb2b75eabfb759 [stream]

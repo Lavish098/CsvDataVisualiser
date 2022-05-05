@@ -1,3 +1,113 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.upload-file{
+    margin-top: 20px;
+    margin-left: 1px;
+    margin-bottom: 10px;
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (min-width: 500px) {
+    .upload-file{
+    margin-top: 0;
+    margin-left: 16px;
+    flex-direction: row;
+}
+}
+.upload-file input{
+    display: none;
+}
+.upload-file span{
+    font-size: 12px;
+    margin-left: 16px;
+    align-self: center;
+}
+.upload-file label{
+  max-width: 160px;
+  transition: 0.5s ease-in-out all;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-left: 20px;
+    padding: 12px 24px;
+    color: #fff;
+    background-color: rgb(84, 3, 116);
+    text-decoration: none;
+}
+@media screen and (min-width: 550px) {
+  .upload-file label{
+    margin-left: 0;
+  }
+}
+@media screen and (min-width: 576px) {
+  .upload-file label{
+    margin-left: 0;
+    align-self: center;
+  }
+}
+.datainput button{
+  transition: 0.5s ease-in-out all;
+  margin-top: 10px;
+  margin-left: 20px;
+    width: 30%;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 12px 24px;
+    color: #fff;
+    background-color: rgb(84, 3, 116);
+    text-decoration: none;
+}
+.data-info{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+@media screen and (min-width: 550px) {
+  .data-info{
+    flex-direction: row;
+    margin-top: 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+    .data-info{
+    display: flex;
+    flex-direction: row;
+}
+}
+.data-info input:nth-child(1){
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.data-info input:nth-child(2){
+  margin-right: 20px;
+  margin-left: 20px;
+}
+@media screen and (min-width: 550px) {
+  .data-info input:nth-child(1){
+    margin-left: 0;
+  margin-bottom: 0;
+}
+.data-info input:nth-child(2){
+  margin-right: 0px;
+  margin-left: 0;
+}
+}
+.data-info input{
+    width: 190px;
+    transition: .5s ease-in-out;
+    padding: 10px 4px;
+    border: none;
+    border-radius: 20px;
+}
+
+.data-info input:focus{
+    outline: none;
+    box-shadow: 0 1px 0 0 #303030;
+}

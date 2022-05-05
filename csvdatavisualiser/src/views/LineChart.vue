@@ -37,7 +37,7 @@ data(){
     chart:null,
     left:'',
     bottom:'',
-    test:''
+    fileName:''
   };
 },
 watch:{
@@ -52,6 +52,10 @@ methods:{
       let files = e.target.files || e.datatransfer.files;
       if (!files.length) return (this.feedback = "Invalid File");
       var file = e.target.files[0];
+      if(file){
+        this.fileName = file.name
+      console.log(this.fileName)
+      }
       await this.$papa.parse(file, {
         header: true,
         skipEmptyLines: true,
@@ -110,7 +114,7 @@ methods:{
 
   const yScale = d3
     .scaleLinear()
-    .range([height, 0])
+    .rangeRound([height, 0])
     .domain([0, d3.max(contents_val, (g) => {
       if(this.left){
 return g[this.left];
@@ -123,7 +127,7 @@ return g[this.left];
  
   const xScale = d3
     .scaleTime()
-    .range([0, width])
+    .rangeRound([0, width])
     .domain(d3.extent(contents_val, ((g) => {
       if(this.bottom){
         return g[this.bottom]
@@ -136,17 +140,16 @@ return g[this.left];
     .call(d3.axisBottom(xScale));
 
 //define the line
-var line = d3.line()
+const line = d3.line()
 .x((g) => {
     if(this.bottom){
-        console.log(xScale(g[this.bottom]))
+      console.log(xScale(g[this.bottom]))
         return xScale(g[this.bottom])
       }
 })
 .y((g) => {
     if(this.left){
-        console.log(yScale(g[this.left]))
-return yScale(g[this.left]);
+    return yScale(g[this.left]);
       }
 })
 .curve(d3.curveCardinal)
@@ -171,6 +174,7 @@ this.chart.append('g')
     this.chart
     .append("path")
     .datum(contents_val)
+    .enter()
     .attr("g", line)
     .style("fill", "none")
     .style("stroke", "#CC0000")

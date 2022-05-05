@@ -8,8 +8,7 @@
           <label for="csv-file">Upload CSV File</label>
           <input type="file" id="csv-file" accept=".csv" @change="parse_csv"><br>
           <span>{{ this.fileName }}</span>
-          </div>
-         <div class="data-info">
+          </div> <div class="data-info">
             <!-- <p>Input the name of the header you want to use for your horizontal line</p> -->
             <input type="text" v-model="sector" placeholder="sector">
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
@@ -118,11 +117,11 @@ methods:{
         return g[this.sector]
       }
   })
-  const path = d3.arc().outerRadius(svg_radius - 10).innerRadius(0);
+  const path = d3.arc().outerRadius(svg_radius).innerRadius(120);
 
   const label = d3.arc().outerRadius(svg_radius).innerRadius(svg_radius - 80);
 
-  const PieGroups = this.chart
+    const PieGroups = this.chart
     .selectAll(".arc")
     .data(pie(contents_val))
     .enter()
@@ -147,6 +146,7 @@ PieGroups
         return g.data[this.name]
       }
     })
+    
     .style("text-anchor", "middle")
     .style("font-size", 17);
 
@@ -154,7 +154,6 @@ svg
   .append('g')
   .append("text").text("Top population")
   .attr("class", "title")
-  
   }
 }
 }
@@ -166,5 +165,4 @@ svg
    fill: green;
    font-weight: italic;
 }
-
 </style>

@@ -23,5 +23,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   min-height: 100vh;
+  /* background-image: url("./assets/3959346.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center; */
 }
 </style>
