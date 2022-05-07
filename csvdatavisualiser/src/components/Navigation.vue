@@ -1,7 +1,7 @@
 <template>
   <div>
        <!-- Navbar -->
-    <nav class="relative container mx-auto p-6">
+    <nav class="relative container mx-auto p-4">
       <!-- Flex container -->
       <div class="flex items-center mt-4 justify-between">
         <!-- Logo -->
@@ -28,7 +28,7 @@
         <div class="bar"></div>
       </div>
       <transition name="mobile-nav" >
-          <ul class="mobile-nav"  v-show="mobileNav">
+          <ul class="mobile-nav bg-void"  v-show="mobileNav">
                       <router-link @click="toggleMobileNav" class="link" :to="{name: 'Home'}">Home</router-link>
                       <router-link @click="toggleMobileNav" class="link" :to="{name: 'Charts'}">Charts</router-link>
                       
@@ -109,11 +109,7 @@ nav .branding{
     width: 50px;
 }
 
-#sav{
-    font-size: 35px;
-    margin-top: 5px;
-    margin-left: 20px;
-}
+
 .nav-link{
     position: absolute;
     top: 32px;
@@ -122,7 +118,12 @@ nav .branding{
     width: auto;
     
 }*/
-
+#sav{
+    font-weight: bold;
+    font-size: 25px;
+    margin-top: 1px;
+    margin-left: 2px;
+}
 .mobile-nav{
     z-index: 99;
     padding: 20px;
@@ -133,13 +134,16 @@ nav .branding{
     flex-direction: column;
     position: fixed;
     height: 20%;
-    background-color: #080808;
-    top: 80px;
+    top: 60px;
     right: 0;
+    border: 1px solid rgb(84, 3, 116);
+    border-radius: 10px 0 0 10px;
 }
 .mobile-nav .link{
-    padding: 15px 0;
     color: #fff;
+}
+.mobile-nav .link:nth-child(1){
+    margin-bottom: 10px;
 }
 .mobile-nav-enter-active{
     transition: all 1s ease;
@@ -178,7 +182,7 @@ nav .branding{
   .menu-icon{
     cursor: pointer;
     position: absolute;
-    top: 32px;
+    top: 45px;
     right: 25px;
     height: 25px;
     width: auto;

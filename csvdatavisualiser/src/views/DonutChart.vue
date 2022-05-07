@@ -99,7 +99,8 @@ methods:{
   const svg_width = 400;
   const svg_height = 400;
   const svg_radius = Math.min(svg_width, svg_height) / 2;
-  var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+  var colorScale = d3.scaleOrdinal()
+  .range(["#3399ff", "#5daef8", "#86c3fa", "#add6fb", "#d6ebfd"]);
   
   const svg = d3
     .select("svg")
@@ -119,7 +120,7 @@ methods:{
   })
   const path = d3.arc().outerRadius(svg_radius).innerRadius(120);
 
-  const label = d3.arc().outerRadius(svg_radius).innerRadius(svg_radius - 80);
+  // const label = d3.arc().outerRadius(svg_radius).innerRadius(svg_radius - 80);
 
     const PieGroups = this.chart
     .selectAll(".arc")
@@ -132,23 +133,68 @@ methods:{
     .append("path")
     .attr("d", path)
     .attr("fill", (g) => {return colorScale(g)})
-    .attr("stroke", "black")
-    .style("stroke-width", "2px")
+    .transition()
+    .duration(2000)
+    .attrTween("d", tweenPie)
     .style("opacity", 0.7)
- 
-PieGroups
-    .append("text")
-    .attr("transform", (g) => { 
-               return "translate(" + label.centroid(g) + ")"; 
-            })
+
+    function tweenPie(b){
+      b.innerRadius = 0;
+      var i = d3.interpolate({startAngle: 0, endAngle: 0}, b);
+      return (t) =>{ return path(i(t))}
+    }
+
+
+    var legendSize = 18
+  var legendSpacing = 4
+
+  const legend = PieGroups
+    .selectAll(".legend")
+    .data(colorScale.domain())
+    .enter()
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", (d, i) =>{ 
+      var height = legendSize + legendSpacing
+      var offset = height * colorScale.domain().length / 2
+      var x = legendSize * -2;
+      var y = (i * height) - offset
+      return `translate(${x}, ${y})`
+    });
+
+    legend.append("rect")
+    .attr("width", legendSize)
+    .attr("height", legendSize)
+    .attr("fill", (d, i) => {
+      return colorScale(i);
+    });
+
+    legend.append("text")
+    .attr("x", legendSize + legendSpacing)
+    .attr("y", legendSize - legendSpacing)
     .text((g) => {
-        if(this.name){
+      if(this.name){
         return g.data[this.name]
       }
     })
+    .style("font-size",5)
+    .attr("fill", (d, i) => {
+      return colorScale(i);
+    });
+ 
+// PieGroups
+//     .append("text")
+//     .attr("transform", (g) => { 
+//                return "translate(" + label.centroid(g) + ")"; 
+//             })
+//     .text((g) => {
+//         if(this.name){
+//         return g.data[this.name]
+//       }
+//     })
     
-    .style("text-anchor", "middle")
-    .style("font-size", 17);
+//     .style("text-anchor", "middle")
+//     .style("font-size", 17);
 
 svg
   .append('g')

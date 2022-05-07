@@ -57,13 +57,13 @@
     <footer class="bg-veryDarkBlue">
       <!-- Flex Container -->
       <div
-        class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0"
+        class="container flex flex-col-reverse justify-between px-6 py-2 mx-auto space-y-8"
       >
         <!-- Logo and social links container -->
         <div
-          class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start"
+          class="flex flex-col-reverse items-center justify-between space-y-12"
         >
-          <div class="mx-auto my-6 text-center text-white md:hidden">
+          <div class="mx-auto my-6 text-center text-white">
             Copyright &copy; 2022, All Rights Reserved
           </div>
   
@@ -77,11 +77,11 @@
         </div>
 
         <!-- Input Container -->
-        <div class="flex flex-col justify-between">
+        <!-- <div class="flex flex-col justify-between">
           <div class="hidden text-white md:block">
             Copyright &copy; 2022, All Rights Reserved
           </div>
-        </div>
+        </div> -->
       </div>
     </footer>
     </div>

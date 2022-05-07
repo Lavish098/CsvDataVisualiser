@@ -108,10 +108,12 @@ methods:{
     // .attr("width", svg_width)
     // .attr("height", svg_height);
     .attr("viewBox", `0 0 ${svg_width} ${svg_height}`)
+    
 
     this.chart = svg
     .append("g")
-    .attr("transform", `translate(${margin}, ${margin})`);
+    .attr("transform", `translate(${margin}, ${margin})`)
+    
  
   const yScale = d3
     .scaleLinear()
@@ -128,26 +130,26 @@ return g[this.left];
  
   const xScale = d3
     .scaleBand()
-    .range([0, chart_width])
+    .rangeRound([0, chart_width])
     .domain(contents_val.map((g) => {
       if(this.bottom){
         return g[this.bottom]
       }
       }))
-    .padding(0.2);
+    .padding(0.5);
  
   this.chart
     .append("g")
     .attr("transform", `translate(0, ${chart_height})`)
     .call(d3.axisBottom(xScale));
 
-const color = d3.scaleOrdinal()
-.range(d3.schemeCategory10)
-.domain(contents_val.map((g) => {
-  if(this.bottom){
-        return g[this.bottom]
-      }
-}));
+// const color = d3.scaleOrdinal()
+// .range(d3.schemeCategory10)
+// .domain(contents_val.map((g) => {
+//   if(this.bottom){
+//         return g[this.bottom]
+//       }
+// }));
 
     const barGroups = this.chart
     .selectAll("rect")
@@ -157,11 +159,8 @@ const color = d3.scaleOrdinal()
   barGroups
     .append("rect")
     .attr("class", "bar")
-    .attr("fill", (g) => { 
-      if(this.bottom){
-        return color(g[this.bottom])
-      }})
-      
+    .attr("fill", "white")
+    .attr("rx", 20)
     .attr("x", (g) => {
       if(this.bottom){
         return xScale(g[this.bottom])
@@ -182,9 +181,6 @@ return yScale(g[this.left]);
     
     
 
-//animation
-    
-
     svg
   .append('text')
   .attr('class', 'label')
@@ -200,7 +196,7 @@ svg
   .attr('x', chart_width / 2 + margin)
   .attr('y', chart_height + margin * 1.7)
   .attr('text-anchor', 'middle')
-  .text('name')
+  .text()
  
 svg
   .append('text')
@@ -216,5 +212,7 @@ svg
 </script>
 
 <style scoped>
-
+rect{
+  color: violet;
+}
 </style>

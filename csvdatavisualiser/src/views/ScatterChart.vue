@@ -107,7 +107,7 @@ const width = 600;
 const height = 500;
 const spacing = 120
 // const formatPercent = d3.format('.2%')
-var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+// var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
 // append the svg object to the body of the page
   const svg = d3
@@ -176,7 +176,7 @@ return yScale(g[this.left]);
     .attr("r", 10)
     .attr('stroke','black')
     .attr('stroke-width',1)
-    .attr('fill', (g) => {return colorScale(g)})
+    .attr('fill', "white")
     .on('mouseover', function () {
         d3.select(this)
         .transition()
