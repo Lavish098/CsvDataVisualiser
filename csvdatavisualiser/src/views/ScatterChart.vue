@@ -101,6 +101,7 @@ methods:{
           // console.log("error")
         }
         }
+      
     },
   renderChart(contents_val){
 const width = 600;
@@ -197,7 +198,10 @@ return yScale(g[this.left]);
   .text((g) => {
     return g.country})
   .attr("font-size", "10px")
-   console.log(this.contents)
+   console.log(this.contents);
+
+   this.left = "";
+    this.bottom = "";
   }
 }
 }

@@ -197,7 +197,9 @@ svg
   .append("text").text("Top population")
   .attr("class", "title")
   
-  }
+  this.sector = "";
+  this.name = "";
+ }
 }
 }
 </script>

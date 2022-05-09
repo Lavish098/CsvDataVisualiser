@@ -14,16 +14,15 @@
             Develop a nice data chart from your csv data
           </h1>
           <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
-            CDV makes it simple to create data chart from data in your csv files
+            Chartify makes it simple to create data chart from data in your csv files
             and it provides a wide range of charts to choose from.
           </p>
-          <!-- <div class="flex justify-center md:justify-start">
-            <a
-              href="#"
-              class="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
-              >Get Started</a
-            >
-          </div> -->
+          <div class="flex flex-col md:flex-row items-center">
+          <router-link :to="{name: 'Charts'}"
+            class=" p-3 px-6 pt-3 rounded-full shadow-2xl button"
+            >Get Started</router-link
+          >
+        </div>
         </div>
         <div class="md:w-1/2">
           <img src="../assets/image.png" alt="" class="rounded-20px mb-14 md:mb-0 md:-mt-12"/>
@@ -44,10 +43,9 @@
         </h2>
         <!-- Button -->
         <!-- <div>
-          <a
-            href="#"
-            class="p-3 px-6 pt-2 text-brightRed bg-white rounded-full shadow-2xl baseline hover:bg-gray-900"
-            >Get Started</a
+          <router-link :to="{name: 'Charts'}"
+            class="p-4 px-6 pt-3 rounded-full shadow-2xl baseline button"
+            >Get Started</router-link
           >
         </div> -->
       </div>
@@ -97,4 +95,18 @@ export default {
 #cta{
   background: rgb(84, 3, 116);
 }
+.button{
+  background: rgb(84, 3, 116);
+  border-radius: 20px;
+}
+/* @media screen and (max-width: 320px){
+  .button{
+    margin-left: 70px;
+  }
+}
+@media screen and (max-width: 375px){
+  .button{
+    margin-left: 100px;
+  }
+} */
 </style>

@@ -179,8 +179,6 @@ return yScale(g[this.left]);
       }
      })
     
-    
-
     svg
   .append('text')
   .attr('class', 'label')
@@ -205,7 +203,9 @@ svg
   .attr('y', 40)
   .attr('text-anchor', 'middle')
   .text('Issues in the past 1 week')
-  console.log(this.contents)
+  console.log(this.contents);
+  this.left = "";
+  this.bottom = "";
   }
 }
 }

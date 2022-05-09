@@ -3,11 +3,11 @@
        <!-- Navbar -->
     <nav class="relative container mx-auto p-4">
       <!-- Flex container -->
-      <div class="flex items-center mt-4 justify-between">
+      <div class="flex items-center justify-between">
         <!-- Logo -->
         <div class="pt-2">
           <router-link class="header" :to="{name: 'Home'}">
-                  <h2 id="sav" class="text-stark">C.D.V</h2> 
+                  <h2 id="sav" class="text-stark">CHARTIFY</h2> 
                   </router-link>  
         </div>
         <!-- Menu Items -->
@@ -120,14 +120,14 @@ nav .branding{
 }*/
 #sav{
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 1px;
     margin-left: 2px;
 }
 .mobile-nav{
     z-index: 99;
     padding: 20px;
-    width: 70%;
+    width: 40%;
     text-transform: uppercase;
     max-width: 350px;
     display: flex;
@@ -136,14 +136,19 @@ nav .branding{
     height: 20%;
     top: 60px;
     right: 0;
-    border: 1px solid rgb(84, 3, 116);
     border-radius: 10px 0 0 10px;
 }
 .mobile-nav .link{
     color: #fff;
 }
+.mobile-nav .link:hover{
+    background: rgb(84, 3, 116);
+    width: 100%;
+    padding: 5px;
+    transition: all 1s ease;
+}
 .mobile-nav .link:nth-child(1){
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .mobile-nav-enter-active{
     transition: all 1s ease;
@@ -182,7 +187,7 @@ nav .branding{
   .menu-icon{
     cursor: pointer;
     position: absolute;
-    top: 45px;
+    top: 25px;
     right: 25px;
     height: 25px;
     width: auto;

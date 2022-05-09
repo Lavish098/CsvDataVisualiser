@@ -2,21 +2,20 @@
 <div class="home pt-5">
  <div class="flex flex-wrap mt-5">
        <router-link class="chart" :to="{name: 'BarChart'}">
-         <img src="../assets/barchart.png" alt="">
-         <h1>Bars chart</h1> </router-link>
+         <img src="../assets/newBarChart.jpg" alt="Bar Chart">
+        </router-link>
   <router-link class="chart" :to="{name: 'ScatterChart'}">
-             <img src="../assets/scatterplot.png" alt="">
-    <h1>Scatter chart</h1></router-link>
+             <img src="../assets/newScatterChart.jpg" alt="Scatter Chart">
+  </router-link>
   <router-link class="chart" :to="{name: 'PieChart'}">
-             <img src="../assets/piechart.jpg" alt="">
-    <h1>Pie chart</h1></router-link>
-  
+             <img src="../assets/newPieChart.jpg" alt="Pie Chart">
+  </router-link>
   <router-link class="chart" :to="{name: 'LineChart'}">
-             <img src="" alt="">
-    <h1>Line chart</h1></router-link>
+             <img src="" alt="Line Chart">
+  </router-link>
   <router-link class="chart" :to="{name: 'DonutChart'}">
-             <img src="" alt="">
-    <h1>Donut chart</h1></router-link>
+             <img src="../assets/newDonutChart.jpg" alt="Donut Chart">
+  </router-link>
   
   </div>
   </div>
@@ -43,19 +42,22 @@ export default {
   position: relative;
     cursor: pointer;
     border-radius: 8px;
-    background-color: rgb(84, 3, 116);
     min-height: 220px;
     margin: 30px 40px;
+    box-shadow: 0 6px 0px -4px rgba(84, 3, 116, 0.932), 0 2px 4px -4px rgba(84, 3, 116, 0.86);
     /* padding-bottom: 40px; */
     transition: .5s ease all;
     width: 90%;
-    @apply md:w-5/12 md:mx-6 lg:mx-3 lg:ml-16
+    @apply md:w-5/12 md:mx-6 lg:mx-3 lg:ml-16 lg:w-64
 }
 @media screen and (min-width:1440px) {
   .chart{
     margin-left: 30px;
-    width: 29%;
+    width: 20%;
   }
+}
+.chart:hover{
+  transform: rotateZ(-1deg) scale(1.01);
 }
 .chart img{
     display: block;
@@ -68,17 +70,5 @@ export default {
 h1{
   font-size: 50px;
   padding: 10px 0;
-}
-.header{
-    @apply w-1/5 h-full right-0;
-}
-.datainput{
-    @apply py-52
-}
-.datainput input{
-    @apply w-11/12 h-8 rounded-30px
-}
-.datainput button{
-    @apply mt-4 w-1/3 rounded-20px h-8 
 }
 </style>
