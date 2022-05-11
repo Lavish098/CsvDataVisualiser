@@ -11,9 +11,12 @@
     "core-js": "^3.6.5",
     "d3": "^7.4.4",
     "firebase": "^9.7.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "papaparse": "^5.3.2",
     "vue": "^3.0.0",
+    "vue-html-to-paper": "^1.4.4",
     "vue-papa-parse": "^3.0.4",
     "vue-router": "4"
   },

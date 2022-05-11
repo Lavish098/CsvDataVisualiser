@@ -100,6 +100,7 @@
 }
 }
 .data-info input{
+  color: rgb(84, 3, 116);
     width: 190px;
     transition: .5s ease-in-out;
     padding: 10px 4px;

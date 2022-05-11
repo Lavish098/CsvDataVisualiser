@@ -15,6 +15,7 @@
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
               <input type="text" v-model="name" placeholder="name">
               <button @click="getContent">Visualise</button>
+              <button @click="printSection">Print</button>
             </div>
           
       </div>
@@ -22,12 +23,15 @@
   <div class="" :contents="contents">
          
       </div>
-    <svg></svg>
+    <div id="printSection">
+    <svg></svg></div>
   </div>
 </template>
 
 <script>
 import * as d3 from "d3";
+import * as html2canvas from "html2canvas"
+import jsPDF from "jspdf"
 export default {
     components:{
     },
@@ -199,7 +203,20 @@ svg
   
   this.sector = "";
   this.name = "";
- }
+ },
+  printSection() {
+      var doc = new jsPDF("l", "pt", "a4");
+      var element = document.getElementById('printSection');
+      var  width = element.style.width;
+      var  height = element.style.height;
+      html2canvas(element).then((canvas) =>{
+        const img = canvas.toDataURL("image/png");
+
+        doc.addImage(img, "PNG", 140, 10, width, height);
+        doc.save("Chart.pdf")
+
+      })
+      }
 }
 }
 </script>

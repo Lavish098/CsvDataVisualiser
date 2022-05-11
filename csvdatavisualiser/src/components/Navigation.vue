@@ -126,29 +126,31 @@ nav .branding{
 }
 .mobile-nav{
     z-index: 99;
-    padding: 20px;
-    width: 40%;
+    padding: 10px;
+    width: 100%;
     text-transform: uppercase;
     max-width: 350px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    height: 20%;
+    height: 10%;
     top: 60px;
     right: 0;
     border-radius: 10px 0 0 10px;
 }
 .mobile-nav .link{
+    background: rgb(84, 3, 116);
+    border-radius: 10px;
+    padding: 10px;
     color: #fff;
 }
 .mobile-nav .link:hover{
-    background: rgb(84, 3, 116);
     width: 100%;
-    padding: 5px;
     transition: all 1s ease;
 }
 .mobile-nav .link:nth-child(1){
-    margin-bottom: 20px;
+    margin-right: 20px;
 }
 .mobile-nav-enter-active{
     transition: all 1s ease;
