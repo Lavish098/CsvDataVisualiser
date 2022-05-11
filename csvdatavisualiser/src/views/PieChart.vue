@@ -14,6 +14,8 @@
             <input type="text" v-model="sector" placeholder="sector">
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
               <input type="text" v-model="name" placeholder="name">
+         </div>
+         <div>
               <button @click="getContent">Visualise</button>
               <button @click="printSection">Print</button>
             </div>

@@ -23,7 +23,7 @@
     display: none;
 }
 .upload-file span{
-    font-size: 12px;
+    font-size: 17px;
     margin-left: 16px;
     align-self: center;
 }
@@ -52,7 +52,6 @@
 }
 .datainput button{
   transition: 0.5s ease-in-out all;
-  margin-top: 10px;
   margin-left: 20px;
     width: 30%;
     font-size: 14px;
@@ -63,15 +62,22 @@
     background-color: rgb(84, 3, 116);
     text-decoration: none;
 }
+.datainput button:nth-child(1){
+  margin-top: 0;
+}
 .data-info{
     display: flex;
-    flex-direction: column;
-    margin-bottom: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 @media screen and (min-width: 550px) {
   .data-info{
+    flex-wrap: nowrap;
     flex-direction: row;
     margin-top: 20px;
+  }
+  .datainput button{
+    margin-top: 0;
   }
 }
 @media screen and (min-width: 768px) {
@@ -85,13 +91,18 @@
   margin-left: 20px;
   margin-bottom: 10px;
 }
-.data-info input:nth-child(2){
-  margin-right: 20px;
+/* .data-info input:nth-child(2){
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+} */
+.data-info input:nth-child(3){
+  margin-right: 10px;
   margin-left: 20px;
 }
 @media screen and (min-width: 550px) {
   .data-info input:nth-child(1){
-    margin-left: 0;
+    margin-left: 15px;
   margin-bottom: 0;
 }
 .data-info input:nth-child(2){
@@ -101,9 +112,10 @@
 }
 .data-info input{
   color: rgb(84, 3, 116);
-    width: 190px;
+    width: 150px;
+    height: 45px;
     transition: .5s ease-in-out;
-    padding: 10px 4px;
+    padding: 4px 10px;
     border: none;
     border-radius: 20px;
 }

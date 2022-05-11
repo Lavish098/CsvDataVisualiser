@@ -10,9 +10,9 @@
   <router-link class="chart" :to="{name: 'PieChart'}">
              <img src="../assets/newPieChart.jpg" alt="Pie Chart">
   </router-link>
-  <router-link class="chart" :to="{name: 'LineChart'}">
+  <!-- <router-link class="chart" :to="{name: 'LineChart'}">
              <img src="" alt="Line Chart">
-  </router-link>
+  </router-link> -->
   <router-link class="chart" :to="{name: 'DonutChart'}">
              <img src="../assets/newDonutChart.jpg" alt="Donut Chart">
   </router-link>

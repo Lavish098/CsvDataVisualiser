@@ -129,7 +129,7 @@ nav .branding{
     padding: 10px;
     width: 100%;
     text-transform: uppercase;
-    max-width: 350px;
+    max-width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,7 +159,7 @@ nav .branding{
     transition: all 1s ease;
 } 
 .mobile-nav-enter{
-    transform: translateX(350px);
+    transform: translateX(450px);
 }
 .mobile-nav-leave{
     transform: translateX(0);
@@ -168,7 +168,7 @@ nav .branding{
     transform: translateX(0);
 }
 .mobile-nav-leave-to{
-    transform: translateX(350px);
+    transform: translateX(450px);
 }
 .btn-home .bar:nth-child(2) {
     opacity: 0;

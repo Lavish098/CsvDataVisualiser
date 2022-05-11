@@ -10,11 +10,11 @@
           <span>{{ this.fileName }}</span>
           </div>
           <div class="data-info">
-            <!-- <p>Input the name of the header you want to use for your horizontal line</p> -->
-            <input type="text" v-model="left" placeholder="left">
-            
-              <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
-              <input type="text" v-model="bottom" placeholder="bottom">
+            <input type="text" v-model="left" placeholder="Left">
+            <input type="text" v-model="bottom" placeholder="Bottom">
+            <input type="text" v-model="title" placeholder="Title">
+            </div>
+             <div>
               <button @click="getContent">Visualise</button>
               <button @click="printSection">Print</button>
             </div>
@@ -46,6 +46,7 @@ data(){
     chart:null,
     left:'',
     bottom:'',
+    title:'',
     fileName:''
   };
 },
@@ -190,7 +191,12 @@ return yScale(g[this.left]);
   .attr('y', margin / 2.4)
   .attr('transform', 'rotate(-90)')
   .attr('text-anchor', 'middle')
-  .text('age')
+  .text(() => {
+      if(this.left){
+          return this.left;
+      }
+    })
+    .style("font-size", 20)
  
 svg
   .append('text')
@@ -198,7 +204,12 @@ svg
   .attr('x', chart_width / 2 + margin)
   .attr('y', chart_height + margin * 1.7)
   .attr('text-anchor', 'middle')
-  .text()
+  .text(() => {
+      if(this.bottom){
+          return this.bottom;
+      }
+    })
+    .style("font-size", 20)
  
 svg
   .append('text')
@@ -206,7 +217,13 @@ svg
   .attr('x', chart_width / 2 + margin)
   .attr('y', 40)
   .attr('text-anchor', 'middle')
-  .text('Issues in the past 1 week')
+  .text(() => {
+      if(this.title){
+          return this.title;
+      }
+    })
+  .style("font-size", 30)
+
   console.log(this.contents);
   this.left = "";
   this.bottom = "";

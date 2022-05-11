@@ -12,10 +12,11 @@
           </div> 
           <div class="data-info">
             <!-- <p>Input the name of the header you want to use for your horizontal line</p> -->
-            <input type="text" v-model="left" placeholder="left">
-            
+            <input type="text" v-model="left" placeholder="Left">
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
-              <input type="text" v-model="bottom" placeholder="bottom">
+            <input type="text" v-model="bottom" placeholder="Bottom">
+          </div>
+          <div>
               <button @click="getContent">Visualise</button>
               <button @click="printSection">Print</button>
             </div>
