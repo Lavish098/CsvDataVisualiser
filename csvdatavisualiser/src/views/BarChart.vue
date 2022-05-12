@@ -1,7 +1,7 @@
 <template>
   <div  id="hello" class="hello
   container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
-    <div class="header">
+    <div class="header mb-6">
           
       <div class="datainput">
         <div class="upload-file">
@@ -131,8 +131,9 @@ return g[this.left];
  
   this.chart
     .append("g")
-    .call(d3.axisLeft(yScale).ticks(_.maxBy(contents_val, "contents")));
- 
+    .call(d3.axisLeft(yScale).ticks(_.maxBy(contents_val, "contents")))
+    .style("stroke-width", 3);
+
   const xScale = d3
     .scaleBand()
     .rangeRound([0, chart_width])
@@ -146,15 +147,16 @@ return g[this.left];
   this.chart
     .append("g")
     .attr("transform", `translate(0, ${chart_height})`)
-    .call(d3.axisBottom(xScale));
+    .call(d3.axisBottom(xScale))
+    .style("stroke-width", 2);
 
-// const color = d3.scaleOrdinal()
-// .range(d3.schemeCategory10)
-// .domain(contents_val.map((g) => {
-//   if(this.bottom){
-//         return g[this.bottom]
-//       }
-// }));
+const color = d3.scaleOrdinal()
+.range(["#540374"])
+.domain(contents_val.map((g) => {
+  if(this.bottom){
+        return g[this.bottom]
+      }
+}));
 
     const barGroups = this.chart
     .selectAll("rect")
@@ -164,7 +166,7 @@ return g[this.left];
   barGroups
     .append("rect")
     .attr("class", "bar")
-    .attr("fill", "blue")
+    .attr("fill", color)
     .attr("rx", 20)
     .attr("x", (g) => {
       if(this.bottom){
@@ -236,7 +238,7 @@ svg
       html2canvas(element).then((canvas) =>{
         const img = canvas.toDataURL("image/png");
 
-        doc.addImage(img, "PNG", 140, 10, width, height);
+        doc.addImage(img, "PNG", 140, 80, width, height);
         doc.save("Chart.pdf")
 
       })

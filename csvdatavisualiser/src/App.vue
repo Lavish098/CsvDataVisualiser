@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="bg-void text-stark">
+<div id="app" class="bg-stark text-void">
   <Navigation/>
   <router-view></router-view>
   </div>

@@ -19,7 +19,7 @@
           </p>
           <div class="flex flex-col md:flex-row items-center">
           <router-link :to="{name: 'Charts'}"
-            class=" p-3 px-6 pt-3 rounded-full shadow-2xl button"
+            class="text-stark p-3 px-6 pt-3 rounded-full shadow-2xl button"
             >Get Started</router-link
           >
         </div>
@@ -33,11 +33,11 @@
           <section id="cta">
       <!-- Flex Container -->
       <div
-        class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0"
+        class="mb-24 container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:space-y-0"
       >
         <!-- Heading -->
         <h2
-          class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left"
+          class="text-5xl font-bold leading-tight text-center text-stark md:text-4xl md:max-w-xl md:text-left"
         >
           Simplify your work today
         </h2>
@@ -61,13 +61,13 @@
         <div
           class="flex flex-col-reverse items-center justify-between space-y-12"
         >
-          <div class="mx-auto my-6 text-center text-white">
+          <div class="mx-auto my-6 text-center text-stark">
             Copyright &copy; 2022, All Rights Reserved
           </div>
   
         <!-- List Container -->
         <div class="flex justify-around">
-          <div class="flex text-white">
+          <div class="flex text-stark">
             <router-link class="mr-4" :to="{name: 'Home'}">HOME</router-link>
             <router-link class="link" :to="{name: 'Charts'}">CHARTS</router-link>
            </div>
@@ -98,6 +98,9 @@ export default {
 .button{
   background: rgb(84, 3, 116);
   border-radius: 20px;
+}
+h1{
+  color:rgb(84, 3, 116);
 }
 /* @media screen and (max-width: 320px){
   .button{

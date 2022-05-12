@@ -44,7 +44,6 @@ export default {
     border-radius: 8px;
     min-height: 220px;
     margin: 30px 40px;
-    box-shadow: 0 6px 0px -4px rgba(84, 3, 116, 0.932), 0 2px 4px -4px rgba(84, 3, 116, 0.86);
     /* padding-bottom: 40px; */
     transition: .5s ease all;
     width: 90%;
@@ -61,7 +60,7 @@ export default {
 }
 .chart img{
     display: block;
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
     z-index: 1;
     width: 100%;
     min-height: 100px;

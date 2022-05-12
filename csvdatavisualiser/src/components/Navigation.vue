@@ -11,7 +11,7 @@
                   </router-link>  
         </div>
         <!-- Menu Items -->
-        <div class="hidden space-x-6 md:flex" v-show="!mobile">
+        <div class="hidden text-stark space-x-6 md:flex" v-show="!mobile">
                 <router-link class="link" :to="{name: 'Home'}">HOME</router-link>
                 <router-link class="link" :to="{name: 'Charts'}">CHARTS</router-link>
            
@@ -77,7 +77,9 @@ methods:{
 </script>
 
 <style scoped>
-
+nav{
+    background: rgb(84, 3, 116)
+}
 /* nav {
     background: rgb(0, 0, 0);
     display: flex;
@@ -125,6 +127,7 @@ nav .branding{
     margin-left: 2px;
 }
 .mobile-nav{
+    background: rgb(84, 3, 116);
     z-index: 99;
     padding: 10px;
     width: 100%;
@@ -135,18 +138,18 @@ nav .branding{
     align-items: center;
     position: fixed;
     height: 10%;
-    top: 60px;
+    top: 72px;
     right: 0;
-    border-radius: 10px 0 0 10px;
+    border-radius: 0 0 10px 10px;
 }
 .mobile-nav .link{
-    background: rgb(84, 3, 116);
+    font-weight: bold;
     border-radius: 10px;
     padding: 10px;
-    color: #fff;
+    color: rgb(84, 3, 116);
+    @apply bg-stark
 }
 .mobile-nav .link:hover{
-    width: 100%;
     transition: all 1s ease;
 }
 .mobile-nav .link:nth-child(1){

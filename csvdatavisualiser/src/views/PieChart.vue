@@ -1,7 +1,7 @@
 <template>
   <div class="hello pt-5 md:w-10/12 lg:w-3/4
   container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
-    <div class="header">
+    <div class="header mb-11">
           
       <div class="datainput">
           <div class="upload-file">
@@ -214,7 +214,7 @@ svg
       html2canvas(element).then((canvas) =>{
         const img = canvas.toDataURL("image/png");
 
-        doc.addImage(img, "PNG", 140, 10, width, height);
+        doc.addImage(img, "PNG", 140, 80, width, height);
         doc.save("Chart.pdf")
 
       })

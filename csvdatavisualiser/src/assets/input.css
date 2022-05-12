@@ -23,6 +23,8 @@
     display: none;
 }
 .upload-file span{
+  color: rgb(84, 3, 116);
+  font-weight: 700;
     font-size: 17px;
     margin-left: 16px;
     align-self: center;
@@ -53,6 +55,7 @@
 .datainput button{
   transition: 0.5s ease-in-out all;
   margin-left: 20px;
+  margin-top: 10px;
     width: 30%;
     font-size: 14px;
     cursor: pointer;
@@ -68,7 +71,6 @@
 .data-info{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 20px;
 }
 @media screen and (min-width: 550px) {
   .data-info{
@@ -122,5 +124,5 @@
 
 .data-info input:focus{
     outline: none;
-    box-shadow: 0 1px 0 0 #303030;
+    box-shadow: 0 5px 0 0 rgb(84, 3, 116);
 }

@@ -218,7 +218,7 @@ svg
       html2canvas(element).then((canvas) =>{
         const img = canvas.toDataURL("image/png");
 
-        doc.addImage(img, "PNG", 140, 10, width, height);
+        doc.addImage(img, "PNG", 140, 80, width, height);
         doc.save("Chart.pdf")
 
       })
