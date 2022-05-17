@@ -113,7 +113,7 @@ methods:{
     // .attr("width", svg_width)
     // .attr("height", svg_height)
     .attr("radius", svg_radius)
-    .attr("viewBox", `0 0 ${svg_width} ${svg_height}`);
+    .attr("viewBox", `30 0 ${svg_width} ${svg_height}`);
 
     this.chart = svg
     .append("g")

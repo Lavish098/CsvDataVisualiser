@@ -102,7 +102,7 @@ methods:{
  const margin = { top: 40, right: 80, bottom: 60, left: 50 },
     width = 960 - margin.left - margin.right,
     height = 580 - margin.top - margin.bottom;
-
+const parseDate = d3.timeParse("%Y")
 
   const svg = d3
     .select("svg")
@@ -115,10 +115,17 @@ methods:{
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
  
+  contents_val.forEach((g) =>{
+    if(this.bottom){
+      console.log(parseDate(g[this.bottom]))
+    g[this.bottom] = parseDate(g[this.bottom])
+    g[this.left] = +g[this.left]
+    }
+  })
 
   const yScale = d3
     .scaleLinear()
-    .rangeRound([height, 0])
+    .range([height, 0])
     .domain([0, d3.max(contents_val, (g) => {
       if(this.left){
 return g[this.left];
@@ -131,10 +138,9 @@ return g[this.left];
  
   const xScale = d3
     .scaleTime()
-    .rangeRound([0, width])
+    .range([0, width])
     .domain(d3.extent(contents_val, (g) => {
       if(this.bottom){
-        this.bottom
         return g[this.bottom]
       }
       }));
@@ -142,22 +148,31 @@ return g[this.left];
   this.chart
     .append("g")
     .attr("transform", "translate(0, " + height + ")")
-    .call(d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")));
+    .call(d3.axisBottom(xScale).ticks(5));
 
 //define the line
 const line = d3.line()
 .x((g) => {
-    if(this.bottom){
-      console.log(xScale(g[this.bottom]))
+  console.log(xScale(g[this.bottom]))
         return xScale(g[this.bottom])
-      }
 })
 .y((g) => {
-    if(this.left){
+  console.log(yScale(g[this.left]))
     return yScale(g[this.left]);
-      }
 })
 .curve(d3.curveCardinal)
+
+
+this.chart
+    .append("path")
+    .data([contents_val])
+    .attr("class", "line") 
+   .attr("d", line)
+        .attr("transform", "translate(" + 0 + "," + 100 + ")")
+    .style("fill", "none")
+    .style("stroke", "#540374")
+    .style("stroke-width", "3");
+
 //scatter dot
 this.chart.append('g')
         .selectAll("dot")
@@ -172,18 +187,54 @@ this.chart.append('g')
     if(this.left){
         return yScale(g[this.left])
       }})
-        .attr("r", 2)
-        .attr("transform", "translate(" + 100 + "," + 100 + ")")
-        .style("fill", "#CC0000");
+        .attr("r", 8)
+        .attr("transform", "translate(" + 0 + "," + 100 + ")")
+        .style("fill", "#540374");
 
-    this.chart
-    .append("path")
-    .datum(contents_val)
-    .enter()
-    .attr("g", line)
-    .style("fill", "none")
-    .style("stroke", "#CC0000")
-    .style("stroke-width", "2");
+svg
+  .append('text')
+  .attr('class', 'label')
+  .attr('x', -(height / 2))
+  .attr('y', 50 / 2.4)
+  .attr('transform', 'rotate(-90)')
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.left){
+          return this.left;
+      }
+    })
+    .style("font-size", 20)
+    .style("fill", "#540374");
+ 
+svg
+  .append('text')
+  .attr('class', 'label')
+  .attr('x', width/2)
+  .attr('y', height + 80)
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.bottom){
+          return this.bottom;
+      }
+    })
+    .style("font-size", 20)
+    .style("fill", "#540374");
+ 
+svg
+  .append('text')
+  .attr('x', width / 2 + margin)
+  .attr('y', 40)
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.title){
+          return this.title;
+      }
+    })
+  .style("font-size", 30)
+
+
+        this.left = "";
+        this.bottom = "";
   }
 }
 }
