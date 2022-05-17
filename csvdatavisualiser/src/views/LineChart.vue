@@ -22,7 +22,8 @@
   <div class="" :contents="contents">
          
       </div>
-    <svg></svg>
+    <div id="printSection">
+    <svg></svg></div>
   </div>
 </template>
 
