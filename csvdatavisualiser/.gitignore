@@ -2,7 +2,7 @@
 node_modules
 /dist
 csv.vue
-./firebase
+firebaseInit.js
 
 # local env files
 .env.local
