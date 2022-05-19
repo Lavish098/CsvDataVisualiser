@@ -27,7 +27,7 @@
   <div class="" :contents="contents">
           
       </div>
-    <div id="printSection">
+    <div id="printSection" class="w-full">
     <svg></svg></div>
   </div>
 </template>
@@ -128,12 +128,11 @@ methods:{
       //All Group
       
     },
-  renderChart(){
+  renderChart(contents_val){
 const width = 600;
 const height = 500;
 const spacing = 120
-// const formatPercent = d3.format('.2%')
-// var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+const parseDate = d3.timeParse("%d-%b-%y")
 
 // append the svg object to the body of the page
   const svg = d3
@@ -146,101 +145,102 @@ const spacing = 120
     .append("g")
     .attr('transform','translate(' + spacing/2 + ',' + spacing/2 + ')');
  
- //List of groups
-(contents_val) =>{
- var allGroup = [this.valueA, this.valueB, this.valueC]
-    console.log(contents_val[this.valueA])
- var dataReady = allGroup.map((grpName) =>{
-     return {
-         name: grpName,
-         values: contents_val.map((g) => {
-             console.log(g.values)
-         })
-     }
- })
- console.log(dataReady)
-}
+ contents_val.forEach((g) =>{
+    if(this.bottom){
+    g[this.bottom] = parseDate(g[this.bottom])
+    g[this.left] = +g[this.left]
+    }
+  })
+ 
+
 //scales
-// const xScale = d3.scaleLinear()
-//     .domain([d3.min(contents_val, (g) => {
-//       if(this.bottom){
-//         return g[this.bottom]
-//       }})-1, 
-//         d3.max(contents_val, (g) => {
-//           if(this.bottom){
-//         return g[this.bottom]
-//       }
-//         })+1])
-//     .range([0, width-spacing]);
-//   const yScale = d3.scaleLinear()
-//     .domain([0, d3.max(contents_val, (g) => {
-//       if(this.left){
-// return g[this.left];
-//       }
-//     })])
-//     .range([height-spacing, 0]);
- 
-//  // X-axis
-// 	const xAxis = d3.axisBottom(xScale);
-//   // Y-axis
-// 	const yAxis = d3.axisLeft(yScale);
-//      // X-axis
-//   this.chart
-//   .append('g')
-//       .attr('transform', 'translate(0,' + (height - spacing) + ')')
-//       .call(xAxis);
-    
-//   // Y-axis
-//   this.chart
-//   .append('g')
-//   .call(yAxis);
-    
+const xScale = d3.scaleTime()
+    .domain(d3.extent(contents_val, (g) => {
+      if(this.bottom){
+        return g[this.bottom]
+      }
+      }))
+    .range([0, width-spacing]);
 
-// const scatterGroups = this.chart
-//     .selectAll("circle")
-//     .data(contents_val)
-//     .enter();
+  const yScale = d3.scaleLinear()
+    .domain([0, d3.max(contents_val, (g) => {
+      if(this.valueA && this.valueB){
+return Math.max(g[this.valueA], g[this.valueB], g[this.valueC]);
+      }
+    })])
+    .range([height-spacing, 0]);
  
-//   scatterGroups
-//     .append("circle")
-//     .attr("cx",  (g) => { 
-//       if(this.bottom){
-//         return xScale(g[this.bottom])
-//       }} )
-//     .attr("cy",  (g) => { 
-//       if(this.left){
-// return yScale(g[this.left]);
-//       }} )
-//       .transition()
-//     .duration(4000)
-//     .attr("r", 10)
-//     .attr('stroke','black')
-//     .attr('stroke-width',1)
-//     .attr('fill', "white")
-//     .on('mouseover', function () {
-//         d3.select(this)
-//         .transition()
-//         .duration(500)
-//         .attr('r',20)
-//         .attr('stroke-width',3)
-//     })
-//     .on('mouseout', function () {
-//         d3.select(this)
-//           .transition()
-//           .duration(500)
-//           .attr('r',10)
-//           .attr('stroke-width',1)
-//       })
-//   svg.selectAll("text")
-//   .data(contents_val).enter()
-//   .append("text")
-//   .text((g) => {
-//     return g.country})
-//   .attr("font-size", "10px")
-//    console.log(this.contents);
+ // X-axis
+	const xAxis = d3.axisBottom(xScale);
+  // Y-axis
+	const yAxis = d3.axisLeft(yScale);
+     // X-axis
+  this.chart
+  .append('g')
+      .attr('transform', 'translate(0,' + (height - spacing) + ')')
+      .call(xAxis);
+    
+  // Y-axis
+  this.chart
+  .append('g')
+  .call(yAxis);
+    
+const line1 = d3.line()
+.x((g) => {
+  console.log(xScale(g[this.bottom]))
+        return xScale(g[this.bottom])
+})
+.y((g) => {
+  console.log(yScale(g[this.valueA]))
+    return yScale(g[this.valueA]);
+})
 
-//    this.left = "";
-//     this.bottom = "";
+const line2 = d3.line()
+.x((g) => {
+  console.log(xScale(g[this.bottom]))
+        return xScale(g[this.bottom])
+})
+.y((g) => {
+  console.log(yScale(g[this.valueB]))
+    return yScale(g[this.valueB]);
+})
+
+const line3 = d3.line()
+.x((g) => {
+  console.log(xScale(g[this.bottom]))
+        return xScale(g[this.bottom])
+})
+.y((g) => {
+  console.log(yScale(g[this.valueC]))
+    return yScale(g[this.valueC]);
+})
+
+this.chart
+    .append("path")
+    .data([contents_val])
+    .attr("class", "line") 
+   .attr("d", line1)
+    .style("fill", "none")
+    .style("stroke", "#540374")
+    .style("stroke-width", "3");
+
+    this.chart
+    .append("path")
+    .data([contents_val])
+    .attr("class", "line") 
+   .attr("d", line2)
+    .style("fill", "none")
+    .style("stroke", "blue")
+    .style("stroke-width", "3");
+
+    this.chart
+    .append("path")
+    .data([contents_val])
+    .attr("class", "line") 
+   .attr("d", line3)
+    .style("fill", "none")
+    .style("stroke", "red")
+    .style("stroke-width", "3");
   },
   printSection() {
       var doc = new jsPDF("l", "pt", "a4");
@@ -260,7 +260,5 @@ const spacing = 120
 </script>
 
 <style scoped>
-.bar{
-  fill: #319bbe;
-}
+
 </style>

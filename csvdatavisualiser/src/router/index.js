@@ -6,7 +6,7 @@ import ScatterChart from '../views/ScatterChart.vue'
 import PieChart from '../views/PieChart.vue'
 import LineChart from '../views/LineChart.vue'
 import DonutChart from '../views/DonutChart.vue'
-import ConnectedScatterChart from '../views/ConnectedScatterChart.vue'
+import MultipleLineChart from '../views/MultipleLineChart.vue'
 import Charts from '../views/Charts.vue'
 
 
@@ -52,14 +52,6 @@ const routes = [
     }
   },
   {
-    path: '/linechart',
-    name: 'LineChart',
-    component: LineChart,
-    meta:{
-      title: 'Line Chart',
-    }
-  },
-  {
     path: '/donutchart',
     name: 'DonutChart',
     component: DonutChart,
@@ -68,14 +60,21 @@ const routes = [
     }
   },
   {
-    path: '/connectedscatterchart',
-    name: 'ConnectedScatterChart',
-    component: ConnectedScatterChart,
+    path: '/linechart',
+    name: 'LineChart',
+    component: LineChart,
     meta:{
-      title: 'Connected ScatterChart',
+      title: 'Line Chart',
     }
   },
- 
+  {
+    path: '/multiplelinechart',
+    name: 'MultipleLineChart',
+    component: MultipleLineChart,
+    meta:{
+      title: 'MultipleLineChart',
+    }
+  },
   {
     path: '/charts',
     name: 'Charts',

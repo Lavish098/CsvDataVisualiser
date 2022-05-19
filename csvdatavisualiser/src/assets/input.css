@@ -14,8 +14,6 @@
 }
 @media screen and (min-width: 500px) {
     .upload-file{
-    margin-top: 0;
-    margin-left: 16px;
     flex-direction: row;
 }
 }
@@ -41,14 +39,9 @@
     background-color: rgb(84, 3, 116);
     text-decoration: none;
 }
-@media screen and (min-width: 550px) {
-  .upload-file label{
-    margin-left: 0;
-  }
-}
+
 @media screen and (min-width: 576px) {
   .upload-file label{
-    margin-left: 0;
     align-self: center;
   }
 }
@@ -76,10 +69,10 @@
   .data-info{
     flex-wrap: nowrap;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .datainput button{
-    margin-top: 0;
+    margin-top: 10px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -104,7 +97,6 @@
 }
 @media screen and (min-width: 550px) {
   .data-info input:nth-child(1){
-    margin-left: 15px;
   margin-bottom: 0;
 }
 .data-info input:nth-child(2){

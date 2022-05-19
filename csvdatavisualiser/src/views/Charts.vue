@@ -13,6 +13,9 @@
   <router-link class="chart" :to="{name: 'LineChart'}">
              <img src="../assets/lineChart.jpg" alt="Line Chart">
   </router-link>
+  <router-link class="chart" :to="{name: 'MultipleLineChart'}">
+             <img src="../assets/lineChart.jpg" alt="Multiple Line Chart">
+  </router-link>
   <router-link class="chart" :to="{name: 'DonutChart'}">
              <img src="../assets/newDonutChart.jpg" alt="Donut Chart">
   </router-link>

@@ -22,7 +22,7 @@
   <div class="" :contents="contents">
          
       </div>
-    <div id="printSection">
+    <div id="printSection" class="w-full">
     <svg></svg></div>
   </div>
 </template>
@@ -105,7 +105,7 @@ methods:{
  const margin = { top: 40, right: 80, bottom: 60, left: 50 },
     width = 960 - margin.left - margin.right,
     height = 580 - margin.top - margin.bottom;
-const parseDate = d3.timeParse("%Y")
+const parseDate = d3.timeParse("%d-%b-%y")
 
   const svg = d3
     .select("svg")
@@ -120,7 +120,6 @@ const parseDate = d3.timeParse("%Y")
  
   contents_val.forEach((g) =>{
     if(this.bottom){
-      console.log(parseDate(g[this.bottom]))
     g[this.bottom] = parseDate(g[this.bottom])
     g[this.left] = +g[this.left]
     }
@@ -151,19 +150,17 @@ return g[this.left];
   this.chart
     .append("g")
     .attr("transform", "translate(0, " + height + ")")
-    .call(d3.axisBottom(xScale).ticks(5));
+    .call(d3.axisBottom(xScale));
 
 //define the line
 const line = d3.line()
 .x((g) => {
-  console.log(xScale(g[this.bottom]))
         return xScale(g[this.bottom])
 })
 .y((g) => {
-  console.log(yScale(g[this.left]))
     return yScale(g[this.left]);
 })
-.curve(d3.curveCardinal)
+// .curve(d3.curveCardinal)
 
 
 this.chart

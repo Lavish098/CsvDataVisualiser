@@ -25,7 +25,7 @@
   <div class="" :contents="contents">
           
       </div>
-    <div id="printSection">
+    <div id="printSection" class="w-full">
     <svg></svg></div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
        <!-- Navbar -->
-    <nav class="relative container mx-auto p-4">
+    <nav class="relative w-full p-4">
       <!-- Flex container -->
       <div class="flex items-center justify-between">
         <!-- Logo -->
@@ -132,7 +132,6 @@ nav .branding{
     padding: 10px;
     width: 100%;
     text-transform: uppercase;
-    max-width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,7 +201,7 @@ nav .branding{
       height: 4px;
       margin-bottom: 8px;
       color: white;
-      background: whitesmoke;
     transition: all ease-in-out 0.5s;
+    @apply bg-stark
   } 
 </style>
