@@ -1,5 +1,6 @@
 <template>
   <div class="hello pt-5 md:w-10/12 lg:w-3/4">
+  <h1 class="errorMessage">{{msg}}</h1>
     <div class="header">
           
       <div class="datainput">
@@ -44,6 +45,7 @@ data(){
     chart:null,
     left:'',
     bottom:'',
+    msg:'',
     fileName:''
   };
 },
@@ -78,6 +80,9 @@ methods:{
       this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
       this.data = csv_read_results
+      if(this.data){
+        this.msg = ""
+      }
       console.log(this.data)
     },
     getContent(){
@@ -237,6 +242,7 @@ svg
         this.bottom = "";
   },
    printSection() {
+     if(this.chart){
       var doc = new jsPDF("l", "pt", "a4");
       var element = document.getElementById('printSection');
       var  width = element.style.width;
@@ -248,6 +254,9 @@ svg
         doc.save("Chart.pdf")
 
       })
+     }else{
+       this.msg = "Please upload a file!"
+     }
       }
 }
 }

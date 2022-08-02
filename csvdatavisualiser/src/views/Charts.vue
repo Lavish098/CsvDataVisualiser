@@ -2,22 +2,22 @@
 <div class="home pt-5">
  <div class="flex flex-wrap mt-5">
        <router-link class="chart" :to="{name: 'BarChart'}">
-         <img src="../assets/newBarChart.jpg" alt="Bar Chart">
+         <img src="../assets/images(2).png" alt="Bar Chart">
         </router-link>
   <router-link class="chart" :to="{name: 'ScatterChart'}">
-             <img src="../assets/newScatterChart.jpg" alt="Scatter Chart">
+             <img src="../assets/images(3).png" alt="Scatter Chart">
   </router-link>
-  <router-link class="chart" :to="{name: 'PieChart'}">
-             <img src="../assets/newPieChart.jpg" alt="Pie Chart">
+  <router-link class="chart"  :to="{name: 'PieChart'}">
+             <img src="../assets/images(6).png" alt="Pie Chart">
   </router-link>
   <router-link class="chart" :to="{name: 'LineChart'}">
-             <img src="../assets/lineChart.jpg" alt="Line Chart">
+             <img src="../assets/images(4).png" alt="Line Chart">
   </router-link>
   <router-link class="chart" :to="{name: 'MultipleLineChart'}">
-             <img src="../assets/lineChart.jpg" alt="Multiple Line Chart">
+             <img src="../assets/images(5).png" alt="Multiple Line Chart">
   </router-link>
-  <router-link class="chart" :to="{name: 'DonutChart'}">
-             <img src="../assets/newDonutChart.jpg" alt="Donut Chart">
+  <router-link class="chart" id="chart" :to="{name: 'DonutChart'}">
+             <img src="../assets/images(7).png" alt="Donut Chart">
   </router-link>
   
   </div>
@@ -69,8 +69,10 @@ export default {
     min-height: 100px;
     object-fit: cover;
 }
+
 h1{
   font-size: 50px;
   padding: 10px 0;
 }
+
 </style>

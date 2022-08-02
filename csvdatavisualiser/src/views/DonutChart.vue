@@ -1,20 +1,20 @@
 <template>
   <div class="hello pt-5 md:w-10/12 lg:w-3/4
   container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
+          <h1 class="errorMessage">{{ msg }}</h1>
     <div class="header">
-          
       <div class="datainput">
           <div class="upload-file">
           <label for="csv-file">Upload CSV File</label>
           <input type="file" id="csv-file" accept=".csv" @change="parse_csv"><br>
           <span>{{ this.fileName }}</span>
-          </div> <div class="data-info">
-            <!-- <p>Input the name of the header you want to use for your horizontal line</p> -->
+          </div> 
+          <div class="data-info">
             <input type="text" v-model="sector" placeholder="sector">
-              <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
-              <input type="text" v-model="name" placeholder="name">
+            <input type="text" v-model="name" placeholder="name">
+              <input type="text" v-model="title" placeholder="Title">
               </div>
-              <div>
+              <div class="mb-6">
               <button @click="getContent">Visualise</button>
               <button @click="printSection">Print</button>
             </div>
@@ -45,6 +45,8 @@ data(){
       data:[],
       sector:'',
       name:'',
+      title:'',
+      msg:'',
     chart:null,
     fileName:''
   };
@@ -80,6 +82,9 @@ methods:{
       this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
       this.data = csv_read_results
+      if(this.data){
+        this.msg = ""
+      }
       console.log(this.data)
     },
     getContent(){
@@ -102,12 +107,22 @@ methods:{
         }
     },
   renderChart(contents_val){
-  const svg_width = 400;
+   const svg_width = 500;
+  const height = 450;
   const svg_height = 400;
   const svg_radius = Math.min(svg_width, svg_height) / 2;
   var colorScale = d3.scaleOrdinal()
-  .range(["#3399ff", "#5daef8", "#86c3fa", "#add6fb", "#d6ebfd"]);
+  .range([
+"#118c7b",
+"#746cb1",
+"#871a5b",
+"#206095",
+"#a8bd3a",
+"#f39431",
+"#f56927",
+"#f66068",]);
   
+  console.log(contents_val)
   const svg = d3
     .select("svg")
     // .attr("width", svg_width)
@@ -117,10 +132,11 @@ methods:{
 
     this.chart = svg
     .append("g")
-    .attr("transform", "translate(" + svg_width / 2 + "," + svg_height / 2 +")");
+    .attr("transform", "translate(" + svg_width / 2 + "," + height / 2 +")");
  
   const pie = d3.pie().value((g) => {
       if(this.sector){
+        console.log(g[this.sector])
         return g[this.sector]
       }
   })
@@ -134,6 +150,8 @@ methods:{
     .enter()
     .append("g")
     .attr("class", "arc");
+
+    console.log(PieGroups)
  
   PieGroups
     .append("path")
@@ -183,34 +201,41 @@ methods:{
         return g.data[this.name]
       }
     })
-    .style("font-size",5)
+    .style("font-size",10)
     .attr("fill", (d, i) => {
       return colorScale(i);
     });
- 
-// PieGroups
-//     .append("text")
-//     .attr("transform", (g) => { 
-//                return "translate(" + label.centroid(g) + ")"; 
-//             })
-//     .text((g) => {
-//         if(this.name){
-//         return g.data[this.name]
+   svg
+  .append('text')
+  .attr('class', 'title')
+  .attr('x', svg_width / 2 )
+  .attr('y', 25)
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.title){
+          return this.title;
+      }
+    })
+  .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
+
+// svg
+// .append('g')
+// .attr("transform", "translate(" + (svg_width / 2 + 50) + "," + 20 + ")")
+//   .append("text").text(() => {
+//       if(this.title){
+//           return this.title;
 //       }
 //     })
-    
-//     .style("text-anchor", "middle")
-//     .style("font-size", 17);
-
-svg
-  .append('g')
-  .append("text").text("Top population")
-  .attr("class", "title")
+//   .attr("class", "title")
+//   .style("font-size", "50")
 
   this.sector = "";
   this.name = "";
   },
   printSection() {
+    if (this.chart){
       var doc = new jsPDF("l", "pt", "a4");
       var element = document.getElementById('printSection');
       var  width = element.style.width;
@@ -220,8 +245,11 @@ svg
 
         doc.addImage(img, "PNG", 140, 80, width, height);
         doc.save("Chart.pdf")
-
+      
       })
+    }else{
+      this.msg = "Please upload a file"
+    }
       }
 }
 }

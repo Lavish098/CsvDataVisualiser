@@ -1,6 +1,7 @@
 <template>
   <div class="hello pt-5 md:w-10/12 lg:w-3/4
   container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
+  <h1 class="errorMessage">{{msg}}</h1>
     <Loading v-show="loading"/>
     <div class="header">
           
@@ -15,6 +16,7 @@
             <input type="text" v-model="left" placeholder="Left">
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
             <input type="text" v-model="bottom" placeholder="Bottom">
+            <input type="text" v-model="title" placeholder="Title">
           </div>
           <div>
               <button @click="getContent">Visualise</button>
@@ -48,6 +50,8 @@ data(){
       data:[],
       left:'',
       bottom:'',
+      title:'',
+      msg: '',
     chart:null,
     loading:null,
     fileName:''
@@ -84,6 +88,10 @@ methods:{
       this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
       this.data = csv_read_results
+    
+    if(this.data){
+      this.msg = ""
+    }
       console.log(this.data)
     },
     getContent(){
@@ -109,6 +117,7 @@ methods:{
       
     },
   renderChart(contents_val){
+    const margin = 90;
 const width = 600;
 const height = 500;
 const spacing = 120
@@ -154,13 +163,23 @@ return g[this.left];
   this.chart
   .append('g')
       .attr('transform', 'translate(0,' + (height - spacing) + ')')
+    .attr("color", "#540374")
       .call(xAxis);
     
   // Y-axis
   this.chart
   .append('g')
+    .attr("color", "#540374")
   .call(yAxis);
-    
+
+    const color = d3.scaleOrdinal()
+.range(["#1aa590", "#003c57", "#8a9b2e", "#22d0b6", "#27a0cc", "#118c7b", "#746cb1",
+"#871a5b"])
+.domain(contents_val.map((g) => {
+  if(this.bottom){
+        return g[this.bottom]
+      }
+}));
 
 const scatterGroups = this.chart
     .selectAll("circle")
@@ -180,9 +199,8 @@ return yScale(g[this.left]);
       .transition()
     .duration(4000)
     .attr("r", 10)
-    .attr('stroke','black')
     .attr('stroke-width',1)
-    .attr('fill', "white")
+    .attr('fill', color)
     .on('mouseover', function () {
         d3.select(this)
         .transition()
@@ -203,12 +221,58 @@ return yScale(g[this.left]);
   .text((g) => {
     return g.country})
   .attr("font-size", "10px")
+
+  svg
+  .append('text')
+  .attr('class', 'label')
+  .attr('x', -(height / 2) - margin)
+  .attr('y', margin / 2.4)
+  .attr('transform', 'rotate(-90)')
+  .attr('text-anchor', 'end')
+  .text(() => {
+      if(this.left){
+          return this.left;
+      }
+    })
+    .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
+ 
+svg
+  .append('text')
+  .attr('class', 'label')
+  .attr('x', width / 2 + margin)
+  .attr('y', height + margin * 1.7)
+  .attr('text-anchor', 'end')
+  .text(() => {
+      if(this.bottom){
+          return this.bottom;
+      }
+    })
+    .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
+  svg
+  .append('text')
+  .attr('class', 'title')
+  .attr('x', width / 2)
+  .attr('y', 0)
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.title){
+          return this.title;
+      }
+    })
+  .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
    console.log(this.contents);
 
    this.left = "";
     this.bottom = "";
   },
   printSection() {
+    if(this.chart){
       var doc = new jsPDF("l", "pt", "a4");
       var element = document.getElementById('printSection');
       var  width = element.style.width;
@@ -220,6 +284,9 @@ return yScale(g[this.left]);
         doc.save("Chart.pdf")
 
       })
+    }else{
+      this.msg = "Please upload a file!"
+    }
       }
 }
 }

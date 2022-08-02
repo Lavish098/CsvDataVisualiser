@@ -36,7 +36,7 @@
     margin-left: 20px;
     padding: 12px 24px;
     color: #fff;
-    background-color: rgb(84, 3, 116);
+    background-color: #540374;
     text-decoration: none;
 }
 
@@ -117,4 +117,9 @@
 .data-info input:focus{
     outline: none;
     box-shadow: 0 5px 0 0 rgb(84, 3, 116);
+}
+
+.errorMessage{
+  background-color:#540374 ;
+  @apply -mt-4 pl-3 w-full text-stark 
 }

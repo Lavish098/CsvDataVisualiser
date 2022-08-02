@@ -1,6 +1,7 @@
 <template>
   <div class="hello pt-5 md:w-10/12 lg:w-3/4
   container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
+  <h1 class="errorMessage">{{msg}}</h1>
     <div class="header mb-11">
           
       <div class="datainput">
@@ -14,6 +15,7 @@
             <input type="text" v-model="sector" placeholder="sector">
               <!-- <p>Input the name of the header you want to use for your vertical line</p> -->
               <input type="text" v-model="name" placeholder="name">
+            <input type="text" v-model="title" placeholder="Title">
          </div>
          <div>
               <button @click="getContent">Visualise</button>
@@ -46,6 +48,8 @@ data(){
       data:[],
       sector:'',
       name:'',
+      title:'',
+      msg:'',
     chart:null,
     fileName:''
   };
@@ -82,6 +86,9 @@ methods:{
       console.log(csv_read_results);
       this.data = csv_read_results
       console.log(this.data)
+      if(this.data){
+        this.msg = ""
+      }
     },
     getContent(){
         this.contents = this.data.data
@@ -104,10 +111,19 @@ methods:{
     },
   renderChart(contents_val){
   const svg_width = 500;
+  const height = 450;
   const svg_height = 400;
   const svg_radius = Math.min(svg_width, svg_height) / 2;
   var colorScale = d3.scaleOrdinal()
-  .range(["#3399ff", "#5daef8", "#86c3fa", "#add6fb", "#d6ebfd"]);
+  .range([
+"#118c7b",
+"#746cb1",
+"#871a5b",
+"#206095",
+"#a8bd3a",
+"#f39431",
+"#f56927",
+"#f66068",]);
   
   const svg = d3
     .select("svg")
@@ -118,7 +134,7 @@ methods:{
 
     this.chart = svg
     .append("g")
-    .attr("transform", "translate(" + svg_width / 2 + "," + svg_height / 2 +")");
+    .attr("transform", "translate(" + svg_width / 2 + "," + height / 2 +")");
  
   const pie = d3.pie().value((g) => {
       if(this.sector){
@@ -186,6 +202,20 @@ methods:{
     .attr("fill", (d, i) => {
       return colorScale(i);
     });
+    svg
+  .append('text')
+  .attr('class', 'title')
+  .attr('x', svg_width / 2 )
+  .attr('y', 25)
+  .attr('text-anchor', 'middle')
+  .text(() => {
+      if(this.title){
+          return this.title;
+      }
+    })
+  .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
     // .append("text")  
     // .attr("transform", (g) => { 
     //            return "translate(" + label.centroid(g) + ")"; 
@@ -205,8 +235,10 @@ svg
   
   this.sector = "";
   this.name = "";
+  this.title = "";
  },
   printSection() {
+    if(this.chart){
       var doc = new jsPDF("l", "pt", "a4");
       var element = document.getElementById('printSection');
       var  width = element.style.width;
@@ -218,6 +250,9 @@ svg
         doc.save("Chart.pdf")
 
       })
+    }else{
+      this.msg = "Please upload a file!"
+    }
       }
 }
 }

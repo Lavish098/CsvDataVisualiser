@@ -1,6 +1,7 @@
 <template>
-  <div  id="hello" class="hello
-  container flex flex-col md:items-center md:px-6 mx-auto md:space-y-0">
+  <div class="
+  container flex pt-5 flex-col md:items-center md:px-6 mx-auto ">
+  <h1 class="errorMessage">{{msg}}</h1>
     <div class="header mb-6">
           
       <div class="datainput">
@@ -47,6 +48,7 @@ data(){
     left:'',
     bottom:'',
     title:'',
+    msg:'',
     fileName:''
   };
 },
@@ -57,7 +59,10 @@ watch:{
   }
 },
 methods:{
+  
   async parse_csv(e) {
+    this.left ="";
+    this.bottom ="";
       let raw_results = [];
       let files = e.target.files || e.datatransfer.files;
       if (!files.length) return (this.feedback = "Invalid File");
@@ -82,6 +87,10 @@ methods:{
       this.uploaded_csv_data = csv_read_results;
       console.log(csv_read_results);
       this.data = csv_read_results
+
+      if(this.data){
+        this.msg = ""
+      }
       console.log(this.data)
     },
     getContent(){
@@ -102,12 +111,13 @@ methods:{
   }
     },
   renderChart(contents_val){
-      const margin = 60;
+      const margin = 90;
   const svg_width = 1000;
-  const svg_height = 600;
+  const svg_height = 1000;
   const chart_width = 1000 - 2 * margin;
-  const chart_height = 600 - 2 * margin;
+  const chart_height = 650 - 2 * margin;
  
+ console.log(contents_val)
   const svg = d3
     .select("svg")
     // .attr("width", svg_width)
@@ -125,6 +135,7 @@ methods:{
     .range([chart_height, 0])
     .domain([0, d3.max(contents_val, (g) => {
       if(this.left){
+        console.log(g[this.left])
 return g[this.left];
       }
        })]);
@@ -132,7 +143,9 @@ return g[this.left];
   this.chart
     .append("g")
     .call(d3.axisLeft(yScale).ticks(_.maxBy(contents_val, "contents")))
-    .style("stroke-width", 3);
+    .style("stroke-width", 2)
+    .style("font-size", 15)
+    .attr("color", "#540374");
 
   const xScale = d3
     .scaleBand()
@@ -148,10 +161,13 @@ return g[this.left];
     .append("g")
     .attr("transform", `translate(0, ${chart_height})`)
     .call(d3.axisBottom(xScale))
-    .style("stroke-width", 2);
+    .style("stroke-width", 2)
+    .style("font-size", 20)
+    .attr("color", "#540374");
 
 const color = d3.scaleOrdinal()
-.range(["#540374"])
+.range(["#1aa590", "#003c57", "#8a9b2e", "#22d0b6", "#27a0cc", "#118c7b", "#746cb1",
+"#871a5b"])
 .domain(contents_val.map((g) => {
   if(this.bottom){
         return g[this.bottom]
@@ -162,12 +178,12 @@ const color = d3.scaleOrdinal()
     .selectAll("rect")
     .data(contents_val)
     .enter();
- 
+
   barGroups
     .append("rect")
     .attr("class", "bar")
     .attr("fill", color)
-    .attr("rx", 20)
+    .attr("rx", 5)
     .attr("x", (g) => {
       if(this.bottom){
         return xScale(g[this.bottom])
@@ -198,7 +214,9 @@ return yScale(g[this.left]);
           return this.left;
       }
     })
-    .style("font-size", 20)
+    .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
  
 svg
   .append('text')
@@ -211,13 +229,15 @@ svg
           return this.bottom;
       }
     })
-    .style("font-size", 20)
+    .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
  
 svg
   .append('text')
   .attr('class', 'title')
   .attr('x', chart_width / 2 + margin)
-  .attr('y', 40)
+  .attr('y', 30)
   .attr('text-anchor', 'middle')
   .text(() => {
       if(this.title){
@@ -225,12 +245,16 @@ svg
       }
     })
   .style("font-size", 30)
+  .style("fill", "#540374")
+    .style("text-transform", "uppercase")
 
   console.log(this.contents);
   this.left = "";
   this.bottom = "";
+  this.title = "";
   },
   printSection() {
+    if(this.chart){
       var doc = new jsPDF("l", "pt", "a4");
       var element = document.getElementById('printSection');
       var  width = element.style.width;
@@ -242,13 +266,14 @@ svg
         doc.save("Chart.pdf")
 
       })
+    }else{
+      this.msg = "Please upload a file!"
+    }
       }
 }
 }
 </script>
 
 <style scoped>
-rect{
-  color: violet;
-}
+
 </style>

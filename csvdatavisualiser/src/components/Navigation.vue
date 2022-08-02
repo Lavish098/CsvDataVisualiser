@@ -80,46 +80,6 @@ methods:{
 nav{
     background: rgb(84, 3, 116)
 }
-/* nav {
-    background: rgb(0, 0, 0);
-    display: flex;
-    padding: 25px 0;
-    position: absolute;
-    overflow: hidden;
-    z-index: 99;
-    box-shadow: 0 0 10px 0 rgb(158, 158, 158);
-    @apply w-full lg:w-9/12 lg:rounded-20px lg:top-8 lg:left-28 
-}
-.link{
-    font-weight: bold;
-    font-size: 30px;
-    transition: .3s color ease;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-nav .branding{
-    display: flex;
-    
-}
-.header{
-    margin-left: 20px;
-    font-weight: bold;
-    text-decoration: none;
-}
-.sav{
-    width: 50px;
-}
-
-
-.nav-link{
-    position: absolute;
-    top: 32px;
-    right: 25px;
-    height: 25px;
-    width: auto;
-    
-}*/
 #sav{
     font-weight: bold;
     font-size: 20px;
